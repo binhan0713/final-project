@@ -15,6 +15,7 @@ namespace final_project
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
         Label[,] grids = new Label[20, 10];//20列10行
         Color[,] grids_color = new Color[20, 10];
+        uint block_row = 20;
         public void draw()
         {
             for (int i = 0; i < 20; i++)
