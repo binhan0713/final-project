@@ -11,7 +11,9 @@ using System.Windows.Forms;
 namespace final_project
 {
     public partial class Form1 : Form
+
     {
+        int QQ;
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
         Label[,] grids = new Label[20, 10];//20列10行
         Color[,] grids_color = new Color[20, 10];
