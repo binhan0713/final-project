@@ -30,11 +30,11 @@ namespace final_project
                 for (int j = 0; j < 10; j++)
                 {
                     grids[i, j] = new Label();
-                    grids[i, j].Size = new Size(40, 40);//每个格子大小
+                    grids[i, j].Size = new Size(30, 30);//每个格子大小
                     grids[i,j].BorderStyle = BorderStyle.FixedSingle;//邊框樣式
                     grids[i,j].BackColor = Color.Black;//背景顏色
-                    grids[i,j].Left = 750+40 * j;//左邊距
-                    grids[i,j].Top = 150+40 * i;//上邊距
+                    grids[i,j].Left = 600+30 * j;//左邊距
+                    grids[i,j].Top = 120+30 * i;//上邊距
                     grids[i, j].Visible = true;
                     this.Controls.Add(grids[i, j]);//加到容器
                 }
