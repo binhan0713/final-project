@@ -16,6 +16,11 @@ namespace final_project
         Label[,] grids = new Label[20, 10];//20列10行
         Color[,] grids_color = new Color[20, 10];
         uint block_row = 20;
+        uint block_col = 4;
+        uint block_type;
+        uint block_row_pre = 20;
+        uint block_col_pre = 4;
+        uint block_type_pre;
         public void draw()
         {
             for (int i = 0; i < 20; i++)
@@ -487,6 +492,135 @@ namespace final_project
                     else
                         grids[i, j].BackColor = Color.Black;
         }
+        uint next_block_type(uint type, uint i, uint j)
+        {
+            switch (type)
+            {
+                case 1:
+                    if (j <= 7 && j >= 1 && !signs[i + 2, j - 1] && !signs[i + 2, j + 1] && !signs[i + 2, j + 2])
+                    {
+                        block_row = i + 2; block_col = j - 1;
+                        return 11;
+                    }
+                    else return 1;
+
+                case 11:
+                    if (i >= 2 && !signs[i - 1, j + 1] && !signs[i - 2, j + 1] && !signs[i + 1, j + 1])
+                    {
+                        block_row = i - 2; block_col = j + 1;
+                        return 1;
+                    }
+                    else return 11;
+
+                case 2: return 2;
+
+                case 3:
+                    if (i >= 1 && !signs[i + 1, j + 1] && !signs[i - 1, j])
+                        return 13;
+                    else return 3;
+
+                case 13:
+                    if (j >= 1 && !signs[i + 1, j] && !signs[i + 1, j - 1])
+                        return 3;
+                    else return 13;
+
+                case 4:
+                    if (i >= 1 && !signs[i, j + 1] && !signs[i - 1, j + 1])
+                        return 14;
+                    else return 4;
+
+                case 14:
+                    if (j >= 1 && !signs[i, j - 1] && !signs[i + 1, j + 1])
+                        return 4;
+                    else return 14;
+
+                case 5:
+                    if (!signs[i + 2, j] && !signs[i, j + 1])
+                    {
+                        block_col = j + 1;
+                        return 15;
+                    }
+                    else return 5;
+
+                case 15:
+                    if (j >= 2 && !signs[i, j - 2] && !signs[i + 1, j])
+                    {
+                        block_row = i + 1;
+                        return 25;
+                    }
+                    else return 15;
+
+                case 25:
+                    if (i >= 2 && !signs[i, j - 1] && !signs[i - 2, j])
+                    {
+                        block_col = j - 1;
+                        return 35;
+                    }
+                    else return 25;
+
+                case 35:
+                    if (j <= 7 && !signs[i - 1, j] && !signs[i, j + 2])
+                    {
+                        block_row = i - 1;
+                        return 5;
+                    }
+                    else return 35;
+
+                case 6:
+                    if (!signs[i, j - 1] && !signs[i + 2, j])
+                    {
+                        block_col = j - 1;
+                        return 16;
+                    }
+                    else return 6;
+
+                case 16:
+                    if (j <= 7 && !signs[i - 1, j] && !signs[i, j + 2])
+                    {
+                        block_row = i + 1;
+                        return 26;
+                    }
+                    else return 16;
+
+                case 26:
+                    if (i >= 2 && !signs[i, j + 1] && !signs[i - 2, j])
+                    {
+                        block_col = j + 1;
+                        return 36;
+                    }
+                    else return 26;
+
+                case 36:
+                    if (j >= 2 && !signs[i, j - 2] && !signs[i - 1, j])
+                    {
+                        block_row = i - 1;
+                        return 6;
+                    }
+                    else return 36;
+
+                case 7:
+                    if (i >= 1 && !signs[i - 1, j])
+                        return 17;
+                    else return 7;
+
+                case 17:
+                    if (j >= 1 && !signs[i, j - 1])
+                        return 27;
+                    else return 17;
+
+                case 27:
+                    if (!signs[i + 1, j])
+                        return 37;
+                    else return 27;
+
+                case 37:
+                    if (j <= 8 && !signs[i, j + 1])
+                        return 7;
+                    else return 37;
+
+                default: return 0;
+            }
+        }
         public Form1()
         {
             InitializeComponent();
@@ -496,6 +630,9 @@ namespace final_project
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            block_col_pre = block_col;
+            block_row_pre = block_row;
+            block_type_pre = block_type;
 
         }
     }
