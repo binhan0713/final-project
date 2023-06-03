@@ -18,6 +18,9 @@ namespace final_project
         Label[,] next = new Label[4, 3];   //next area, total 12 grids
         Label[,] grids = new Label[24, 10];//game area, total 200 grids
         Color[,] grids_color = new Color[24, 10];//紀錄每個方塊的顏色
+        bool exchange = false;//紀錄是否交換
+        int exchange_count = 0;//紀錄交換次數
+        uint []bottom;//紀錄方塊底部
         uint block_row = 20;
         uint block_col = 4;
         uint block_type;
@@ -25,7 +28,7 @@ namespace final_project
         uint block_col_pre = 4;
         uint block_type_pre;
         uint block_type_next;
-        uint block_type_temp;
+        uint block_type_temp=0;
         bool block_changed = false;
         uint block_count = 0;//計算方塊數量
         uint score = 0;
@@ -93,7 +96,7 @@ namespace final_project
                 block_row_pre = block_row; block_row_pre = block_row; block_type_pre = block_type;
                 block_row--;
 
-                if (block_row == 19)
+                if (block_row == 19 && !exchange)
                 {
                     block_type_next = (uint)rander.Next(0, 7) + 1;
                     display_next_block(block_type_next);
@@ -111,6 +114,7 @@ namespace final_project
                         label_level.Text = "Level:" + (1010 - timer_interval) / 50;
                     }
                 }
+                exchange = false;
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
                 update_block(block_row, block_col, block_type);
                 show_grids();
@@ -119,16 +123,16 @@ namespace final_project
             }
             else
             {
+                exchange_count = 0;
                 show_grids();
                 full_line_check();
-                if (block_row >= 19)
+                if (block_row == 20)
                 {
                     label_info.Text = "Game Over!";
                     button1.Visible = true;
                     button1.Enabled = true;
                     timer1.Enabled = false;
                     return;
-
                 };
                 block_type = block_type_next;
                 block_row = 20;
@@ -139,7 +143,24 @@ namespace final_project
                 block_changed = false;
             }
         }
-
+        void check_bottom()
+        {
+            // check the block height
+            for(uint j = 0; j < 10; j++)
+            {
+                for (uint i = 0; i < 20; i++)
+                {
+                    if (grids[i, j].BackColor != Color.Black)
+                    {
+                        if (j < block_row)
+                        {
+                            bottom[j] = i;
+                            continue;
+                        }
+                    }
+                }
+            }           
+        }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.P)//暫停
@@ -201,7 +222,7 @@ namespace final_project
 
             if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
-                while (block_row != 19)
+                while (block_row != 20)
                     timer1_Tick(sender, e);
             }
 
@@ -266,17 +287,31 @@ namespace final_project
         }
         void store_block()
         {
-            block_type_temp = block_type;
-            display_temp_block(block_type_temp);
-            
-            block_type = block_type_next;
-            block_type_next = (uint)rander.Next(0, 7) + 1;
-            display_next_block(block_type_next);
-            block_row = 20;
-            block_col = 4;
-            block_row_pre = 20;
-            block_col_pre = 4;
-            block_type_pre = block_type;
+            if(exchange_count == 0)
+            {
+                if (block_type_temp == 0)
+                {
+                    exchange_count = 1;
+                    block_type_temp = block_type;
+                    display_temp_block(block_type_temp);
+                    block_type = block_type_next;
+                    block_type_next = (uint)rander.Next(0, 7) + 1;
+                    display_next_block(block_type_next);
+                    block_row = 20;
+                    block_col = 4;
+                }
+                else
+                {
+                    exchange_count = 1;
+                    exchange = true;
+                    uint t = block_type_temp;
+                    block_type_temp = block_type;
+                    block_type = t;
+                    display_temp_block(block_type_temp);
+                    block_row = 20;
+                    block_col = 4;
+                }
+            }
         }
         void update_block(uint i, uint j, uint type)//方塊有37種對應哪個case把位置轉成true並塗色
         {
@@ -430,7 +465,7 @@ namespace final_project
             switch (type)
             {
                 case 1:
-                    if (i != 0 && !signs[i - 1, j]) return true;
+                    if (i != 0 && !signs[i - 1, j]) return true; 
                     else return false;
 
                 case 11:
