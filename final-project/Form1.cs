@@ -25,6 +25,7 @@ namespace final_project
         uint block_col_pre = 4;
         uint block_type_pre;
         uint block_type_next;
+        uint block_type_temp;
         bool block_changed = false;
         uint block_count = 0;//計算方塊數量
         uint score = 0;
@@ -92,7 +93,7 @@ namespace final_project
                 block_row_pre = block_row; block_row_pre = block_row; block_type_pre = block_type;
                 block_row--;
 
-                if (block_row == 19)//方塊到底部
+                if (block_row == 19)
                 {
                     block_type_next = (uint)rander.Next(0, 7) + 1;
                     display_next_block(block_type_next);
@@ -218,7 +219,10 @@ namespace final_project
                 }
                    
             }
-
+            if(e.KeyCode == Keys.ShiftKey)
+            {
+                store_block();
+            }
             if (block_changed)
             {
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
@@ -258,6 +262,20 @@ namespace final_project
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
+        }
+        void store_block()
+        {
+            block_type_temp = block_type;
+            display_temp_block(block_type_temp);
+            erase_block(block_row, block_col, block_type);
+            block_type = block_type_next;
+            block_type_next = (uint)rander.Next(0, 7) + 1;
+            display_next_block(block_type_next);
+            block_row = 20;
+            block_col = 4;
+            block_row_pre = 20;
+            block_col_pre = 4;
+            block_type_pre = block_type;
         }
         void update_block(uint i, uint j, uint type)//方塊有37種對應哪個case把位置轉成true並塗色
         {
@@ -798,7 +816,37 @@ namespace final_project
                     break;
             }
         }
-        uint next_block_type(uint type, uint i, uint j)
+        void display_temp_block(uint type)
+        {
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
+                    temp[i, j].BackColor = Color.White;
+            switch (type)
+            {
+                case 1:
+                    temp[0, 1].BackColor = temp[1, 1].BackColor = temp[2, 1].BackColor = temp[3, 1].BackColor = Color.Blue;
+                    break;
+                case 2:
+                    temp[1, 0].BackColor = temp[1, 1].BackColor = temp[2, 0].BackColor = temp[2, 1].BackColor = Color.Yellow;
+                    break;
+                case 3:
+                    temp[2, 0].BackColor = temp[2, 1].BackColor = temp[1, 1].BackColor = temp[1, 2].BackColor = Color.Red;
+                    break;
+                case 4:
+                    temp[1, 0].BackColor = temp[1, 1].BackColor = temp[2, 1].BackColor = temp[2, 2].BackColor = Color.Green;
+                    break;
+                case 5:
+                    temp[1, 0].BackColor = temp[2, 0].BackColor = temp[2, 1].BackColor = temp[2, 2].BackColor = Color.Orange;
+                    break;
+                case 6:
+                    temp[2, 0].BackColor = temp[2, 1].BackColor = temp[2, 2].BackColor = temp[1, 2].BackColor = Color.LightBlue;
+                    break;
+                case 7:
+                    temp[1, 0].BackColor = temp[1, 1].BackColor = temp[1, 2].BackColor = temp[2, 1].BackColor = Color.Purple;
+                    break;
+            }
+        }
+        uint next_block_type(uint type, uint i, uint j)//旋轉
         {
             switch (type)
             {
