@@ -14,68 +14,251 @@ namespace final_project
 
     {
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
-        Label[,] grids = new Label[20, 10];//20列10行
-        Color[,] grids_color = new Color[20, 10];
-        uint block_row = 20;
+        Label[,] next = new Label[4, 3];   //next area, total 12 grids
+        Label[,] grids = new Label[20, 10];//game area, total 200 grids
+        Color[,] grids_color = new Color[20, 10];//紀錄每個方塊的顏色
+        uint block_row = 19;
         uint block_col = 4;
         uint block_type;
-        uint block_row_pre = 20;
+        uint block_row_pre = 19;
         uint block_col_pre = 4;
         uint block_type_pre;
-        public void draw()
+        uint block_type_next;
+        bool block_changed = false;
+        uint block_count = 0;//計算方塊數量
+        uint score = 0;
+        int timer_interval = 1010;
+        int game_mode = 1;
+        Random rander = new Random();
+       
+        public Form1()
         {
+            InitializeComponent();
+            WindowState = FormWindowState.Maximized;//最大化窗體
+            block_type = (uint)rander.Next(0, 7) + 1;
+            block_type_pre = block_type;
+            block_type_next = block_type;
+            // generate 20x10 labels for "main" area, dynamically.
             for (int i = 0; i < 20; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    signs[i,j] = false;//初始化
-                }
-            }
-        
-            for (int i = 0; i < 20; i++)
-            {
                 for (int j = 0; j < 10; j++)
                 {
                     grids[i, j] = new Label();
-                    grids[i, j].Size = new Size(30, 30);//每个格子大小
-                    grids[i,j].BorderStyle = BorderStyle.FixedSingle;//邊框樣式
-                    grids[i,j].BackColor = Color.Black;//背景顏色
-                    grids[i,j].Left = 150+30 * j;//左邊距
-                    grids[i,j].Top = 600-30 * i;//上邊距
+                    grids[i, j].Width = 30;
+                    grids[i, j].Height = 30;
+                    grids[i, j].BorderStyle = BorderStyle.FixedSingle;
+                    grids[i, j].BackColor = Color.Black;
+                    grids[i, j].Left = 150 + 30 * j;
+                    grids[i, j].Top = 600 - i * 30;
                     grids[i, j].Visible = true;
-                    this.Controls.Add(grids[i, j]);//加到容器
+                    this.Controls.Add(grids[i, j]);
+                }
+            // generate 4x3 labels for "next" area, dynamically.
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    next[i, j] = new Label();
+                    next[i, j].Width = 20;
+                    next[i, j].Height = 20;
+                    next[i, j].BorderStyle = BorderStyle.FixedSingle;
+                    next[i, j].BackColor = Color.White;
+                    next[i, j].Left = 515 + 20 * j;
+                    next[i, j].Top = 150 - i * 20;
+                    next[i, j].Visible = true;
+                    this.Controls.Add(next[i, j]);
+                }
+            // init variables of the game
+            init_game();
+        }
+
+        public void timer1_Tick(object sender, EventArgs e)
+        {
+            if (y_direction(block_type, block_row, block_col))
+            {
+                block_col_pre = block_col;
+                block_row_pre = block_row;
+                block_type_pre = block_type;
+                block_row--;
+                if (block_row == 19)
+                {
+                    block_type_next = (uint)rander.Next(1, 8);
+                    display_next_block(block_type_next);
+                    block_count++;
+                    block_count++;
+                    label_block_count.Text = "Blocks:" + label_block_count.ToString();
+                    if (game_mode == 1)
+                    {
+                        timer_interval = 1010 - (int)(score / 150) * 50;//每150分速度加快50ms
+                        if (timer_interval < 10)//最快速度10ms
+                        {
+                            timer_interval = 10;
+                        }
+                        timer1.Interval = timer_interval;
+                        label_level.Text = "Level:" + (timer_interval - 1000) / 50;//每50ms升一级
+                    }
+                }
+                erase_block(block_row_pre, block_col_pre, block_type_pre);
+                update_block(block_row, block_col, block_type);
+                show_grids();
+                block_row_pre = block_row;
+                block_changed = false;
+            }
+            else
+            {
+                show_grids();
+                full_line_check();
+                if(block_row == 20)
+                {
+                    label_info.Text = "Game Over";
+                    button1.Visible = true;
+                    button1.Enabled = true;
+                    timer1.Enabled = false;
+                    return;
                 }
             }
+            block_type = block_type_next;
+            block_row = 20;
+            block_col = 4;
+            block_row_pre = 20;
+            block_col_pre = 4;
+            block_type_pre = block_type;
+            block_changed = false;
+
         }
-        void update_block(uint i, uint j, uint type)//方塊有37種對應哪個case把位置轉乘true並塗色
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.P)//暫停
+            {
+                if (game_mode == 0) { game_mode = 1; timer1.Enabled = true; }
+                else { game_mode = 0; timer1.Enabled = false; }
+            }
+
+            if (e.KeyCode == Keys.Left)
+            {
+                if (x_direction(block_type, block_row, block_col, -1))
+                {
+                    block_col_pre = block_col; block_col--;
+                    block_changed = true;
+                }
+            }
+
+            if (e.KeyCode == Keys.Right)
+            {
+                if (x_direction(block_type, block_row, block_col, 1))
+                {
+                    block_col_pre = block_col; block_col++;
+                    block_changed = true;
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                block_type_pre = block_type;
+                block_col_pre = block_col; block_row_pre = block_row;
+                block_type = next_block_type(block_type, block_row, block_col);
+                if (block_type != block_type_pre)
+                    block_changed = true;
+            }
+
+            if (e.KeyCode == Keys.S)//增加level
+            {
+                game_mode = 2;
+                timer_interval -= 50;
+
+                if (timer_interval <= 0)
+                    timer_interval = 1;
+
+                timer1.Interval = timer_interval;
+                label_level.Text = "Level:" + (1010 - timer_interval) / 50;
+            }
+
+            if (e.KeyCode == Keys.A)//減少level
+            {
+                game_mode = 2;
+                timer_interval += 50;
+
+                if (timer_interval >= 1010)
+                    timer_interval = 1010;
+
+                timer1.Interval = timer_interval;
+                label_level.Text = "Level:" + (1010 - timer_interval) / 50;
+            }
+
+            if (e.KeyCode == Keys.Down)//方塊直接落到底部
+            {
+                while (block_row != 19)
+                    timer1_Tick(sender, e);
+            }
+
+            if (block_changed)
+            {
+                erase_block(block_row_pre, block_col_pre, block_type_pre);
+                update_block(block_row, block_col, block_type);
+                show_grids();
+                block_row_pre = block_row; block_col_pre = block_col; block_type_pre = block_type;
+                block_changed = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            init_game();
+            label_info.Text = "";
+            button1.Visible = false;
+            button1.Enabled = false;
+            timer1.Enabled = true;
+        }
+        
+        void init_game()
+        {
+            block_type = (uint)rander.Next(0, 7) + 1;
+            block_type_pre = block_type;
+            block_row = 20;
+            block_col = 4;
+            block_row_pre = 20;
+            block_col_pre = 4;
+            block_type_pre = block_type;
+            block_type_next = block_type;
+            block_changed = false;
+            timer_interval = 1010;
+            timer1.Interval = timer_interval;
+            block_count = 0;
+            score = 0;
+            game_mode = 1;
+
+            for (uint i = 0; i < 24; i++)
+                for (uint j = 0; j < 10; j++)
+                    signs[i, j] = false;
+        }
+        void update_block(uint i, uint j, uint type)//方塊有37種對應哪個case把位置轉成true並塗色
         {
             switch (type)
             {
-                case 1:     //   ----
+                case 1:
                     signs[i, j] = signs[i + 1, j] = signs[i + 2, j] = signs[i + 3, j] = true;
                     grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 2, j] = grids_color[i + 3, j] = Color.Blue;
                     break;
-                case 11:    //  |
+                case 11:
                     signs[i, j] = signs[i, j + 1] = signs[i, j + 2] = signs[i, j + 3] = true;
                     grids_color[i, j] = grids_color[i, j + 1] = grids_color[i, j + 2] = grids_color[i, j + 3] = Color.Blue;
                     break;
-                case 2:     //  口
+                case 2:
                     signs[i, j] = signs[i + 1, j] = signs[i, j + 1] = signs[i + 1, j + 1] = true;
                     grids_color[i, j] = grids_color[i + 1, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = Color.Yellow;
                     break;
-                case 3:     // ㄣ
+                case 3:
                     signs[i, j] = signs[i + 1, j] = signs[i + 1, j - 1] = signs[i, j + 1] = true;
                     grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j - 1] = grids_color[i, j + 1] = Color.Red;
                     break;
-                case 13:    //  _|一
+                case 13:
                     signs[i, j] = signs[i - 1, j] = signs[i, j + 1] = signs[i + 1, j + 1] = true;
                     grids_color[i, j] = grids_color[i - 1, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = Color.Red;
                     break;
-                case 4:     //  |-|
+                case 4:
                     signs[i, j] = signs[i, j - 1] = signs[i + 1, j] = signs[i + 1, j + 1] = true;
                     grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j] = grids_color[i + 1, j + 1] = Color.Green;
                     break;
-                case 14:   //累了以此類推
+                case 14:
                     signs[i, j] = signs[i + 1, j] = signs[i, j + 1] = signs[i - 1, j + 1] = true;
                     grids_color[i, j] = grids_color[i + 1, j] = grids_color[i, j + 1] = grids_color[i - 1, j + 1] = Color.Green;
                     break;
@@ -130,8 +313,71 @@ namespace final_project
                     break;
             }
         }
+        void erase_block(uint i, uint j, uint type)
+        {
+            switch (type)
+            {
+                case 1:
+                    signs[i, j] = signs[i + 1, j] = signs[i + 2, j] = signs[i + 3, j] = false;
+                    break;
+                case 11:
+                    signs[i, j] = signs[i, j + 1] = signs[i, j + 2] = signs[i, j + 3] = false;
+                    break;
+                case 2:
+                    signs[i, j] = signs[i + 1, j] = signs[i, j + 1] = signs[i + 1, j + 1] = false;
+                    break;
+                case 3:
+                    signs[i, j] = signs[i + 1, j] = signs[i + 1, j - 1] = signs[i, j + 1] = false;
+                    break;
+                case 13:
+                    signs[i, j] = signs[i - 1, j] = signs[i, j + 1] = signs[i + 1, j + 1] = false;
+                    break;
+                case 4:
+                    signs[i, j] = signs[i, j - 1] = signs[i + 1, j] = signs[i + 1, j + 1] = false;
+                    break;
+                case 14:
+                    signs[i, j] = signs[i + 1, j] = signs[i, j + 1] = signs[i - 1, j + 1] = false;
+                    break;
+                case 5:
+                    signs[i, j] = signs[i + 1, j] = signs[i + 1, j + 1] = signs[i + 1, j + 2] = false;
+                    break;
+                case 15:
+                    signs[i, j] = signs[i, j - 1] = signs[i + 1, j - 1] = signs[i + 2, j - 1] = false;
+                    break;
+                case 25:
+                    signs[i, j] = signs[i - 1, j] = signs[i - 1, j - 1] = signs[i - 1, j - 2] = false;
+                    break;
+                case 35:
+                    signs[i, j] = signs[i, j + 1] = signs[i - 1, j + 1] = signs[i - 2, j + 1] = false;
+                    break;
+                case 6:
+                    signs[i, j] = signs[i + 1, j] = signs[i + 1, j - 1] = signs[i + 1, j - 2] = false;
+                    break;
+                case 16:
+                    signs[i, j] = signs[i, j + 1] = signs[i + 1, j + 1] = signs[i + 2, j + 1] = false;
+                    break;
+                case 26:
+                    signs[i, j] = signs[i - 1, j] = signs[i - 1, j + 1] = signs[i - 1, j + 2] = false;
+                    break;
+                case 36:
+                    signs[i, j] = signs[i, j - 1] = signs[i - 1, j - 1] = signs[i - 2, j - 1] = false;
+                    break;
+                case 7:
+                    signs[i, j] = signs[i, j - 1] = signs[i, j + 1] = signs[i + 1, j] = false;
+                    break;
+                case 17:
+                    signs[i, j] = signs[i, j + 1] = signs[i - 1, j] = signs[i + 1, j] = false;
+                    break;
+                case 27:
+                    signs[i, j] = signs[i, j - 1] = signs[i, j + 1] = signs[i - 1, j] = false;
+                    break;
+                case 37:
+                    signs[i, j] = signs[i, j - 1] = signs[i + 1, j] = signs[i - 1, j] = false;
+                    break;
+            }
+        }
         bool y_direction(uint type, uint i, uint j)//檢驗下落的地方是不是有方塊，對應上面那個函式看他落下時是那些地方接觸到東西
-                                                            
+
         {
             switch (type)
             {
@@ -493,6 +739,36 @@ namespace final_project
                     else
                         grids[i, j].BackColor = Color.Black;
         }
+        void display_next_block(uint type)
+        {
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
+                    next[i, j].BackColor = Color.White;
+            switch (type)
+            {
+                case 1:
+                    next[0, 1].BackColor = next[1, 1].BackColor = next[2, 1].BackColor = next[3, 1].BackColor = Color.Blue;
+                    break;
+                case 2:
+                    next[1, 0].BackColor = next[1, 1].BackColor = next[2, 0].BackColor = next[2, 1].BackColor = Color.Yellow;
+                    break;
+                case 3:
+                    next[2, 0].BackColor = next[2, 1].BackColor = next[1, 1].BackColor = next[1, 2].BackColor = Color.Red;
+                    break;
+                case 4:
+                    next[1, 0].BackColor = next[1, 1].BackColor = next[2, 1].BackColor = next[2, 2].BackColor = Color.Green;
+                    break;
+                case 5:
+                    next[1, 0].BackColor = next[2, 0].BackColor = next[2, 1].BackColor = next[2, 2].BackColor = Color.Orange;
+                    break;
+                case 6:
+                    next[2, 0].BackColor = next[2, 1].BackColor = next[2, 2].BackColor = next[1, 2].BackColor = Color.LightBlue;
+                    break;
+                case 7:
+                    next[1, 0].BackColor = next[1, 1].BackColor = next[1, 2].BackColor = next[2, 1].BackColor = Color.Purple;
+                    break;
+            }
+        }
         uint next_block_type(uint type, uint i, uint j)
         {
             switch (type)
@@ -622,19 +898,13 @@ namespace final_project
                 default: return 0;
             }
         }
-        public Form1()
-        {
-            InitializeComponent();
-            WindowState = FormWindowState.Maximized;//最大化窗體
-            draw();
-        }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            block_col_pre = block_col;
-            block_row_pre = block_row;
-            block_type_pre = block_type;
-
+            if (e.KeyCode == Keys.Down)
+            {
+                timer1.Interval = timer_interval;
+            }
         }
     }
 }
