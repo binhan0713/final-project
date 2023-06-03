@@ -14,6 +14,7 @@ namespace final_project
 
     {
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
+        Label[,] temp = new Label[4, 4];//暫存方塊
         Label[,] next = new Label[4, 3];   //next area, total 12 grids
         Label[,] grids = new Label[24, 10];//game area, total 200 grids
         Color[,] grids_color = new Color[24, 10];//紀錄每個方塊的顏色
@@ -47,7 +48,7 @@ namespace final_project
                     grids[i, j].Height = 30;
                     grids[i, j].BorderStyle = BorderStyle.FixedSingle;
                     grids[i, j].BackColor = Color.Black;
-                    grids[i, j].Left = 150 + 30 * j;
+                    grids[i, j].Left = 550 + 30 * j;
                     grids[i, j].Top = 600 - i * 30;
                     grids[i, j].Visible = true;
                     this.Controls.Add(grids[i, j]);
@@ -61,10 +62,24 @@ namespace final_project
                     next[i, j].Height = 20;
                     next[i, j].BorderStyle = BorderStyle.FixedSingle;
                     next[i, j].BackColor = Color.White;
-                    next[i, j].Left = 515 + 20 * j;
+                    next[i, j].Left = 915 + 20 * j;
                     next[i, j].Top = 150 - i * 20;
                     next[i, j].Visible = true;
                     this.Controls.Add(next[i, j]);
+                }
+
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    temp[i, j] = new Label();
+                    temp[i, j].Width = 20;
+                    temp[i, j].Height = 20;
+                    temp[i, j].BorderStyle = BorderStyle.FixedSingle;
+                    temp[i, j].BackColor = Color.White;
+                    temp[i, j].Left = 415 + 20 * j;
+                    temp[i, j].Top = 150 - i * 20;
+                    temp[i, j].Visible = true;
+                    this.Controls.Add(temp[i, j]);
                 }
             // init variables of the game
             init_game();
@@ -191,7 +206,17 @@ namespace final_project
 
             if(e.KeyCode == Keys.Down)//離開遊戲
             {
-                timer1.Interval = 15;
+                timer1.Interval = 40;
+            }
+
+            if(e.KeyCode == Keys.Escape)//離開遊戲
+            {
+                if(MessageBox.Show("真的不玩了嗎==？","離開遊戲",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    MessageBox.Show("哭了 掰掰~");
+                    this.Close();
+                }
+                   
             }
 
             if (block_changed)

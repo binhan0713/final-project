@@ -35,6 +35,8 @@
             this.label_level = new System.Windows.Forms.Label();
             this.label_info = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -46,7 +48,7 @@
             // label_block_count
             // 
             this.label_block_count.AutoSize = true;
-            this.label_block_count.Location = new System.Drawing.Point(683, 243);
+            this.label_block_count.Location = new System.Drawing.Point(1232, 265);
             this.label_block_count.Name = "label_block_count";
             this.label_block_count.Size = new System.Drawing.Size(49, 15);
             this.label_block_count.TabIndex = 0;
@@ -55,7 +57,7 @@
             // label_score
             // 
             this.label_score.AutoSize = true;
-            this.label_score.Location = new System.Drawing.Point(683, 276);
+            this.label_score.Location = new System.Drawing.Point(1232, 298);
             this.label_score.Name = "label_score";
             this.label_score.Size = new System.Drawing.Size(43, 15);
             this.label_score.TabIndex = 1;
@@ -65,7 +67,7 @@
             // 
             this.label_level.AutoSize = true;
             this.label_level.Font = new System.Drawing.Font("新細明體", 9F);
-            this.label_level.Location = new System.Drawing.Point(683, 311);
+            this.label_level.Location = new System.Drawing.Point(1232, 333);
             this.label_level.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_level.Name = "label_level";
             this.label_level.Size = new System.Drawing.Size(43, 15);
@@ -77,7 +79,7 @@
             this.label_info.AutoSize = true;
             this.label_info.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.ForeColor = System.Drawing.Color.Red;
-            this.label_info.Location = new System.Drawing.Point(680, 350);
+            this.label_info.Location = new System.Drawing.Point(1229, 372);
             this.label_info.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(0, 34);
@@ -87,7 +89,7 @@
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(13, 13);
+            this.button1.Location = new System.Drawing.Point(845, 265);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(220, 71);
@@ -98,12 +100,32 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1215, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.TabIndex = 221;
+            this.label1.Text = "下一個方塊";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(556, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.TabIndex = 222;
+            this.label2.Text = "暫存方塊";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1836, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label_info);
             this.Controls.Add(this.label_level);
@@ -127,6 +149,8 @@
         private System.Windows.Forms.Label label_level;
         private System.Windows.Forms.Label label_info;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
