@@ -242,7 +242,6 @@ namespace final_project
             }
             if(e.KeyCode == Keys.ShiftKey)
             {
-                erase_block(block_row, block_col, block_type);
                 store_block();
             }
             if (block_changed)
@@ -289,6 +288,7 @@ namespace final_project
         {
             if(exchange_count == 0)
             {
+                erase_block(block_row, block_col, block_type);
                 if (block_type_temp == 0)
                 {
                     exchange_count = 1;
