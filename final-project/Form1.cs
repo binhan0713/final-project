@@ -121,7 +121,7 @@ namespace final_project
             {
                 show_grids();
                 full_line_check();
-                if (block_row == 20)
+                if (block_row >= 19)
                 {
                     label_info.Text = "Game Over!";
                     button1.Visible = true;
@@ -221,6 +221,7 @@ namespace final_project
             }
             if(e.KeyCode == Keys.ShiftKey)
             {
+                erase_block(block_row, block_col, block_type);
                 store_block();
             }
             if (block_changed)
@@ -267,7 +268,7 @@ namespace final_project
         {
             block_type_temp = block_type;
             display_temp_block(block_type_temp);
-            erase_block(block_row, block_col, block_type);
+            
             block_type = block_type_next;
             block_type_next = (uint)rander.Next(0, 7) + 1;
             display_next_block(block_type_next);
