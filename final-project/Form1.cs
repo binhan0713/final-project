@@ -116,6 +116,8 @@ namespace final_project
                 exchange = false;
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
                 update_block(block_row, block_col, block_type);
+                update_shade_block(block_row, block_col, block_type);
+
                 show_grids();
                 block_row_pre = block_row;
                 block_changed = false;
@@ -1007,5 +1009,75 @@ namespace final_project
                 timer1.Interval = timer_interval;
             }
         }
+        void update_shade_block(uint i, uint j, uint type)
+        {
+            while(y_direction(type,i,j))
+            {
+                i--;
+            }
+
+            switch (type)
+            {
+                case 1:
+                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 2, j] = grids_color[i + 3, j] = Color.White;
+                    break;
+                case 11:
+                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i, j + 2] = grids_color[i, j + 3] = Color.White;
+                    break;
+                case 2:
+                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = Color.White;
+                    break;
+                case 3:
+                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j - 1] = grids_color[i, j + 1] = Color.White;
+                    break;
+                case 13:
+                    grids_color[i, j] = grids_color[i - 1, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = Color.White;
+                    break;
+                case 4:
+                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j] = grids_color[i + 1, j + 1] = Color.White;
+                    break;
+                case 14:
+                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i, j + 1] = grids_color[i - 1, j + 1] = Color.White;
+                    break;
+                case 5:
+                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j + 1] = grids_color[i + 1, j + 2] = Color.White;
+                    break;
+                case 15:
+                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j - 1] = grids_color[i + 2, j - 1] = Color.White;
+                    break;
+                case 25:
+                    grids_color[i, j] = grids_color[i - 1, j] = grids_color[i - 1, j - 1] = grids_color[i - 1, j - 2] = Color.White;
+                    break;
+                case 35:
+                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i - 1, j + 1] = grids_color[i - 2, j + 1] = Color.White;
+                    break;
+                case 6:
+                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j - 1] = grids_color[i + 1, j - 2] = Color.White;
+                    break;
+                case 16:
+                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = grids_color[i + 2, j + 1] = Color.White;
+                    break;
+                case 26:
+                    grids_color[i, j] = grids_color[i - 1, j] = grids_color[i - 1, j + 1] = grids_color[i - 1, j + 2] = Color.White;
+                    break;
+                case 36:
+                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i - 1, j - 1] = grids_color[i - 2, j - 1] = Color.White;
+                    break;
+
+                case 7:
+                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i, j + 1] = grids_color[i + 1, j] = Color.White;
+                    break;
+                case 17:
+                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i - 1, j] = grids_color[i + 1, j] = Color.White;
+                    break;
+                case 27:
+                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i, j + 1] = grids_color[i - 1, j] = Color.White;
+                    break;
+                case 37:
+                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j] = grids_color[i - 1, j] = Color.White;
+                    break;
+            }
+        }
     }
+
 }
