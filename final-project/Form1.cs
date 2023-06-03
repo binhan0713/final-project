@@ -20,7 +20,6 @@ namespace final_project
         Color[,] grids_color = new Color[24, 10];//紀錄每個方塊的顏色
         bool exchange = false;//紀錄是否交換
         int exchange_count = 0;//紀錄交換次數
-        uint []bottom;//紀錄方塊底部
         uint block_row = 20;
         uint block_col = 4;
         uint block_type;
@@ -142,24 +141,6 @@ namespace final_project
                 block_type_pre = block_type;
                 block_changed = false;
             }
-        }
-        void check_bottom()
-        {
-            // check the block height
-            for(uint j = 0; j < 10; j++)
-            {
-                for (uint i = 0; i < 20; i++)
-                {
-                    if (grids[i, j].BackColor != Color.Black)
-                    {
-                        if (j < block_row)
-                        {
-                            bottom[j] = i;
-                            continue;
-                        }
-                    }
-                }
-            }           
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
