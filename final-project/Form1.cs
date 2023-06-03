@@ -15,12 +15,12 @@ namespace final_project
     {
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
         Label[,] next = new Label[4, 3];   //next area, total 12 grids
-        Label[,] grids = new Label[20, 10];//game area, total 200 grids
-        Color[,] grids_color = new Color[20, 10];//紀錄每個方塊的顏色
-        uint block_row = 19;
+        Label[,] grids = new Label[24, 10];//game area, total 200 grids
+        Color[,] grids_color = new Color[24, 10];//紀錄每個方塊的顏色
+        uint block_row = 20;
         uint block_col = 4;
         uint block_type;
-        uint block_row_pre = 19;
+        uint block_row_pre = 20;
         uint block_col_pre = 4;
         uint block_type_pre;
         uint block_type_next;
@@ -74,26 +74,25 @@ namespace final_project
         {
             if (y_direction(block_type, block_row, block_col))
             {
-                block_col_pre = block_col;
-                block_row_pre = block_row;
-                block_type_pre = block_type;
+                block_row_pre = block_row; block_row_pre = block_row; block_type_pre = block_type;
                 block_row--;
-                if (block_row == 19)
+
+                if (block_row == 19)//方塊到底部
                 {
-                    block_type_next = (uint)rander.Next(1, 8);
+                    block_type_next = (uint)rander.Next(0, 7) + 1;
                     display_next_block(block_type_next);
                     block_count++;
-                    block_count++;
-                    label_block_count.Text = "Blocks:" + label_block_count.ToString();
+                    score += 5;
+                    label_block_count.Text = "Blocks:" + block_count.ToString();
+                    label_score.Text = "Score:" + score.ToString();
                     if (game_mode == 1)
                     {
-                        timer_interval = 1010 - (int)(score / 150) * 50;//每150分速度加快50ms
-                        if (timer_interval < 10)//最快速度10ms
-                        {
+                        timer_interval = 1010 - (int)(score / 150) * 50;
+                        if (timer_interval <= 0)
                             timer_interval = 10;
-                        }
+
                         timer1.Interval = timer_interval;
-                        label_level.Text = "Level:" + (timer_interval - 1000) / 50;//每50ms升一级
+                        label_level.Text = "Level:" + (1010 - timer_interval) / 50;
                     }
                 }
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
@@ -106,23 +105,23 @@ namespace final_project
             {
                 show_grids();
                 full_line_check();
-                if(block_row == 20)
+                if (block_row == 20)
                 {
-                    label_info.Text = "Game Over";
+                    label_info.Text = "Game Over!";
                     button1.Visible = true;
                     button1.Enabled = true;
                     timer1.Enabled = false;
                     return;
-                }
-            }
-            block_type = block_type_next;
-            block_row = 20;
-            block_col = 4;
-            block_row_pre = 20;
-            block_col_pre = 4;
-            block_type_pre = block_type;
-            block_changed = false;
 
+                };
+                block_type = block_type_next;
+                block_row = 20;
+                block_col = 4;
+                block_row_pre = 20;
+                block_col_pre = 4;
+                block_type_pre = block_type;
+                block_changed = false;
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -184,10 +183,15 @@ namespace final_project
                 label_level.Text = "Level:" + (1010 - timer_interval) / 50;
             }
 
-            if (e.KeyCode == Keys.Down)//方塊直接落到底部
+            if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
                 while (block_row != 19)
                     timer1_Tick(sender, e);
+            }
+
+            if(e.KeyCode == Keys.Down)//離開遊戲
+            {
+                timer1.Interval = 15;
             }
 
             if (block_changed)
