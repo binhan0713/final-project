@@ -194,8 +194,10 @@ namespace final_project
                 block_type_pre = block_type;
                 block_col_pre = block_col; block_row_pre = block_row;
                 block_type = next_block_type(block_type, block_row, block_col);
+                //MessageBox.Show(block_type.ToString());
                 if (block_type != block_type_pre)
                     block_changed = true;
+
             }
 
             if (e.KeyCode == Keys.S)//增加level
@@ -244,6 +246,7 @@ namespace final_project
             }
             if(e.KeyCode == Keys.ShiftKey)
             {
+                erase_block(block_row, block_col, block_type);
                 store_block();
             }
             if (block_changed)
@@ -290,9 +293,10 @@ namespace final_project
         {
             if(exchange_count == 0)
             {
-                erase_block(block_row, block_col, block_type);
+
                 if (block_type_temp == 0)
                 {
+                    block_type = block_type % 10;
                     exchange_count = 1;
                     block_type_temp = block_type;
                     display_temp_block(block_type_temp);
@@ -301,17 +305,20 @@ namespace final_project
                     display_next_block(block_type_next);
                     block_row = 20;
                     block_col = 4;
+                    block_changed = true;
                 }
                 else
                 {
                     exchange_count = 1;
                     exchange = true;
+                    block_type = block_type % 10;
                     uint t = block_type_temp;
                     block_type_temp = block_type;
                     block_type = t;
                     display_temp_block(block_type_temp);
                     block_row = 20;
                     block_col = 4;
+                    block_changed = true;
                 }
             }
         }
