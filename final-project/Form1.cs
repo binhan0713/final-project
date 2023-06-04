@@ -40,9 +40,12 @@ namespace final_project
         {
 
             InitializeComponent();
-            axWindowsMediaPlayer1.Visible = false;//隱藏播放器
-            axWindowsMediaPlayer1.URL = "QQ.mp3";//播放音樂
+            groupBox1.Text = "";
+            axWindowsMediaPlayer1.uiMode = "none";//隱藏播放器的控制項
+            axWindowsMediaPlayer1.enableContextMenu = false;
+            axWindowsMediaPlayer1.URL = "space.mp4";//播放音樂
             axWindowsMediaPlayer1.settings.setMode("loop", true);
+            
             WindowState = FormWindowState.Maximized;//最大化窗體
             //設定音樂循環播放
             block_type = (uint)rander.Next(0, 7) + 1;
@@ -53,20 +56,24 @@ namespace final_project
                 for (int j = 0; j < 10; j++)
                 {
                     grids[i, j] = new Label();
+                    
                     grids[i, j].Width = 30;
                     grids[i, j].Height = 30;
                     grids[i, j].BorderStyle = BorderStyle.FixedSingle;
                     grids[i, j].BackColor = Color.Black;
                     grids[i, j].Left = 550 + 30 * j;
-                    grids[i, j].Top = 600 - i * 30;
+                    grids[i, j].Top = 650 - i * 30;
                     grids[i, j].Visible = true;
                     this.Controls.Add(grids[i, j]);
+                    grids[i, j].BringToFront();
+
                 }
             // generate 4x3 labels for "next" area, dynamically.
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
                 {
                     next[i, j] = new Label();
+                    next[i, j].BringToFront();
                     next[i, j].Width = 20;
                     next[i, j].Height = 20;
                     next[i, j].BorderStyle = BorderStyle.FixedSingle;
@@ -75,12 +82,14 @@ namespace final_project
                     next[i, j].Top = 150 - i * 20;
                     next[i, j].Visible = true;
                     this.Controls.Add(next[i, j]);
+                    next[i, j].BringToFront();
                 }
 
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
                 {
                     temp[i, j] = new Label();
+                    temp[i, j].BringToFront();
                     temp[i, j].Width = 20;
                     temp[i, j].Height = 20;
                     temp[i, j].BorderStyle = BorderStyle.FixedSingle;
@@ -89,6 +98,7 @@ namespace final_project
                     temp[i, j].Top = 150 - i * 20;
                     temp[i, j].Visible = true;
                     this.Controls.Add(temp[i, j]);
+                    temp[i, j].BringToFront();
                 }
             // init variables of the game
             init_game();
@@ -120,8 +130,6 @@ namespace final_project
                     }
                 }
                 show_grids();
-                //update_shade_block(block_row, block_col, block_type);
-                //show_shade_grids();
                 exchange = false;
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
                 update_block(block_row, block_col, block_type);
