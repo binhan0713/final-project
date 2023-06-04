@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label_block_count = new System.Windows.Forms.Label();
             this.label_score = new System.Windows.Forms.Label();
@@ -38,6 +39,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -49,20 +52,18 @@
             // label_block_count
             // 
             this.label_block_count.AutoSize = true;
-            this.label_block_count.Location = new System.Drawing.Point(924, 212);
-            this.label_block_count.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_block_count.Location = new System.Drawing.Point(1232, 265);
             this.label_block_count.Name = "label_block_count";
-            this.label_block_count.Size = new System.Drawing.Size(40, 12);
+            this.label_block_count.Size = new System.Drawing.Size(49, 15);
             this.label_block_count.TabIndex = 0;
             this.label_block_count.Text = "Blocks:";
             // 
             // label_score
             // 
             this.label_score.AutoSize = true;
-            this.label_score.Location = new System.Drawing.Point(924, 238);
-            this.label_score.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_score.Location = new System.Drawing.Point(1232, 298);
             this.label_score.Name = "label_score";
-            this.label_score.Size = new System.Drawing.Size(34, 12);
+            this.label_score.Size = new System.Drawing.Size(43, 15);
             this.label_score.TabIndex = 1;
             this.label_score.Text = "Score:";
             // 
@@ -70,9 +71,10 @@
             // 
             this.label_level.AutoSize = true;
             this.label_level.Font = new System.Drawing.Font("新細明體", 9F);
-            this.label_level.Location = new System.Drawing.Point(924, 266);
+            this.label_level.Location = new System.Drawing.Point(1232, 332);
+            this.label_level.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_level.Name = "label_level";
-            this.label_level.Size = new System.Drawing.Size(34, 12);
+            this.label_level.Size = new System.Drawing.Size(43, 15);
             this.label_level.TabIndex = 218;
             this.label_level.Text = "Level:";
             // 
@@ -81,18 +83,20 @@
             this.label_info.AutoSize = true;
             this.label_info.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.ForeColor = System.Drawing.Color.Red;
-            this.label_info.Location = new System.Drawing.Point(922, 298);
+            this.label_info.Location = new System.Drawing.Point(1229, 372);
+            this.label_info.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_info.Name = "label_info";
-            this.label_info.Size = new System.Drawing.Size(0, 27);
+            this.label_info.Size = new System.Drawing.Size(0, 34);
             this.label_info.TabIndex = 219;
             // 
             // button1
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("新細明體", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(634, 212);
+            this.button1.Location = new System.Drawing.Point(845, 265);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 57);
+            this.button1.Size = new System.Drawing.Size(220, 71);
             this.button1.TabIndex = 220;
             this.button1.TabStop = false;
             this.button1.Text = "New Game";
@@ -103,20 +107,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(911, 63);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(1215, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 221;
             this.label1.Text = "下一個方塊";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(417, 63);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(556, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 222;
             this.label2.Text = "暫存方塊";
             // 
@@ -126,12 +128,22 @@
             this.timer2.Interval = 1;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(12, 12);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(228, 48);
+            this.axWindowsMediaPlayer1.TabIndex = 223;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1377, 360);
+            this.ClientSize = new System.Drawing.Size(1836, 450);
+            this.Controls.Add(this.axWindowsMediaPlayer1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -139,11 +151,12 @@
             this.Controls.Add(this.label_level);
             this.Controls.Add(this.label_score);
             this.Controls.Add(this.label_block_count);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "好玩遊戲";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +173,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer2;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
     }
 }
 

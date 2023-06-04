@@ -38,8 +38,13 @@ namespace final_project
        
         public Form1()
         {
+
             InitializeComponent();
+            axWindowsMediaPlayer1.Visible = false;//隱藏播放器
+            axWindowsMediaPlayer1.URL = "QQ.mp3";//播放音樂
+            axWindowsMediaPlayer1.settings.setMode("loop", true);
             WindowState = FormWindowState.Maximized;//最大化窗體
+            //設定音樂循環播放
             block_type = (uint)rander.Next(0, 7) + 1;
             block_type_pre = block_type;
             block_type_next = block_type;
@@ -115,6 +120,8 @@ namespace final_project
                     }
                 }
                 show_grids();
+                //update_shade_block(block_row, block_col, block_type);
+                //show_shade_grids();
                 exchange = false;
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
                 update_block(block_row, block_col, block_type);
@@ -1092,9 +1099,10 @@ namespace final_project
         }
         private void timer2_Tick(object sender, EventArgs e)
         {
+
             update_shade_block(block_row, block_col, block_type);
             show_shade_grids();
-            for(int i=0;i<20;i++)
+            for (int i=0;i<20;i++)
             {
                 for(int j=0;j<10;j++)
                 {
