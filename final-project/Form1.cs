@@ -244,7 +244,7 @@ namespace final_project
             {
                 if(MessageBox.Show("真的不玩了嗎==？","離開遊戲",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("哭了 掰掰~");
+                    MessageBox.Show("哭了 掰掰~ ");
                     this.Close();
                 }
                    
