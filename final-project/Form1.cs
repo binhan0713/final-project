@@ -284,6 +284,9 @@ namespace final_project
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
+                    temp[i, j].BackColor = Color.White;
             show_grids();
             block_type = (uint)rander.Next(0, 7) + 1;
             block_type_pre = block_type;
@@ -299,7 +302,9 @@ namespace final_project
             block_count = 0;
             score = 0;
             game_mode = 1;
-            
+            block_type_temp=0;
+
+
 
         }
         void store_block()
@@ -1137,10 +1142,7 @@ namespace final_project
             }
         }
 
-        private void timer3_Tick(object sender, EventArgs e)
-        {
 
-        }
     }
 
 }
