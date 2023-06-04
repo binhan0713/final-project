@@ -15,6 +15,7 @@ namespace final_project
     public partial class Form1 : Form
 
     {
+        Color grayColor = Color.FromArgb(205, 0, 0, 0);
         bool end = false;//紀錄遊戲是否結束
         bool israndon = true;
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
@@ -846,37 +847,79 @@ namespace final_project
             for (i = 0; i < 20; i++)
                 for (j = 0; j < 10; j++)
                     if (signs[i, j])
-                        grids[i, j].BackColor = grids_color[i, j];
+                    {
+                        if (grids_color[i, j] == Color.Blue)
+                        {
+                            grids[i, j].Image = imageList1.Images[1];
+
+                        }
+                        else if (grids_color[i, j] == Color.Yellow)
+                        {
+                            grids[i, j].Image = imageList1.Images[5];
+
+                        }
+                        else if (grids_color[i, j] == Color.Red)
+                        {
+                            grids[i, j].Image = imageList1.Images[4];
+
+                        }
+                        else if (grids_color[i, j] == Color.LightBlue)
+                        {
+                            grids[i, j].Image = imageList1.Images[0];
+
+                        }
+                        else if (grids_color[i, j] == Color.Purple)
+                        {
+                            grids[i, j].Image = imageList1.Images[2];
+
+                        }
+                        else if (grids_color[i, j] == Color.Green)
+                        {
+                            grids[i, j].Image = imageList1.Images[6];
+
+                        }
+                        else if (grids_color[i, j] == Color.Orange)
+                        {
+                            grids[i, j].Image = imageList1.Images[3];
+
+                        }
+                    }
                     else
+                    {
+                        grids[i, j].Image = null;
                         grids[i, j].BackColor = Color.Black;
+                    }
         }
         void display_next_block(uint type)
         {
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
+                {
                     next[i, j].BackColor = Color.White;
+                    next[i, j].Image = null;
+                }
             switch (type)
             {
                 case 1:
-                    next[0, 1].BackColor = next[1, 1].BackColor = next[2, 1].BackColor = next[3, 1].BackColor = Color.Blue;
+                    next[0, 1].Image = next[1, 1].Image = next[2, 1].Image = next[3, 1].Image = imageList1.Images[1];
                     break;
                 case 2:
-                    next[1, 0].BackColor = next[1, 1].BackColor = next[2, 0].BackColor = next[2, 1].BackColor = Color.Yellow;
+                    next[1, 0].Image = next[1, 1].Image = next[2, 0].Image = next[2, 1].Image = imageList1.Images[5];
                     break;
                 case 3:
-                    next[2, 0].BackColor = next[2, 1].BackColor = next[1, 1].BackColor = next[1, 2].BackColor = Color.Red;
+                    next[2, 0].Image = next[2, 1].Image = next[1, 1].Image = next[1, 2].Image = imageList1.Images[4];
                     break;
                 case 4:
-                    next[1, 0].BackColor = next[1, 1].BackColor = next[2, 1].BackColor = next[2, 2].BackColor = Color.Green;
+                    next[1, 0].Image = next[1, 1].Image = next[2, 1].Image = next[2, 2].Image = imageList1.Images[6];
                     break;
                 case 5:
-                    next[1, 0].BackColor = next[2, 0].BackColor = next[2, 1].BackColor = next[2, 2].BackColor = Color.Orange;
+                    next[1, 0].Image = next[2, 0].Image = next[2, 1].Image = next[2, 2].Image = imageList1.Images[3];
                     break;
                 case 6:
-                    next[2, 0].BackColor = next[2, 1].BackColor = next[2, 2].BackColor = next[1, 2].BackColor = Color.LightBlue;
+                    next[2, 0].Image = next[2, 1].Image = next[2, 2].Image = next[1, 2].Image = imageList1.Images[0];
                     break;
                 case 7:
-                    next[1, 0].BackColor = next[1, 1].BackColor = next[1, 2].BackColor = next[2, 1].BackColor = Color.Purple;
+                    next[1, 0].Image = next[1, 1].Image = next[1, 2].Image = next[2, 1].Image = imageList1.Images[2];
                     break;
             }
         }
@@ -884,29 +927,32 @@ namespace final_project
         {
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
+                {
                     temp[i, j].BackColor = Color.White;
+                    temp[i, j].Image = null;
+                }
             switch (type)
             {
                 case 1:
-                    temp[0, 1].BackColor = temp[1, 1].BackColor = temp[2, 1].BackColor = temp[3, 1].BackColor = Color.Blue;
+                    temp[0, 1].Image = temp[1, 1].Image = temp[2, 1].Image = temp[3, 1].Image = imageList1.Images[1];
                     break;
                 case 2:
-                    temp[1, 0].BackColor = temp[1, 1].BackColor = temp[2, 0].BackColor = temp[2, 1].BackColor = Color.Yellow;
+                    temp[1, 0].Image = temp[1, 1].Image = temp[2, 0].Image = temp[2, 1].Image = imageList1.Images[5];
                     break;
                 case 3:
-                    temp[2, 0].BackColor = temp[2, 1].BackColor = temp[1, 1].BackColor = temp[1, 2].BackColor = Color.Red;
+                    temp[2, 0].Image = temp[2, 1].Image = temp[1, 1].Image = temp[1, 2].Image = imageList1.Images[4];
                     break;
                 case 4:
-                    temp[1, 0].BackColor = temp[1, 1].BackColor = temp[2, 1].BackColor = temp[2, 2].BackColor = Color.Green;
+                    temp[1, 0].Image = temp[1, 1].Image = temp[2, 1].Image = temp[2, 2].Image = imageList1.Images[6];
                     break;
                 case 5:
-                    temp[1, 0].BackColor = temp[2, 0].BackColor = temp[2, 1].BackColor = temp[2, 2].BackColor = Color.Orange;
+                    temp[1, 0].Image = temp[2, 0].Image = temp[2, 1].Image = temp[2, 2].Image = imageList1.Images[3];
                     break;
                 case 6:
-                    temp[2, 0].BackColor = temp[2, 1].BackColor = temp[2, 2].BackColor = temp[1, 2].BackColor = Color.LightBlue;
+                    temp[2, 0].Image = temp[2, 1].Image = temp[2, 2].Image = temp[1, 2].Image = imageList1.Images[0];
                     break;
                 case 7:
-                    temp[1, 0].BackColor = temp[1, 1].BackColor = temp[1, 2].BackColor = temp[2, 1].BackColor = Color.Purple;
+                    temp[1, 0].Image = temp[1, 1].Image = temp[1, 2].Image = temp[2, 1].Image = imageList1.Images[2];
                     break;
             }
         }
@@ -1124,7 +1170,7 @@ namespace final_project
                 {
                     if (shade[i, j]&&!signs[i,j])
                     {
-                        grids[i, j].BackColor = Color.Gray;
+                        grids[i, j].BackColor = grayColor;
                     }
                 }
             }
