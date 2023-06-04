@@ -1083,7 +1083,7 @@ namespace final_project
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    if (shade[i, j])
+                    if (shade[i, j]&&!signs[i,j])
                     {
                         grids[i, j].BackColor = Color.Gray;
                     }
@@ -1099,6 +1099,27 @@ namespace final_project
                 for(int j=0;j<10;j++)
                 {
                     shade[i, j] = false;
+                }
+            }
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar==Left)
+            {
+                if (x_direction(block_type, block_row, block_col, -1))
+                {
+                    block_col_pre = block_col; block_col--;
+                    block_changed = true;
+                }
+            }
+
+            if (e.KeyChar ==Right)
+            {
+                if (x_direction(block_type, block_row, block_col, 1))
+                {
+                    block_col_pre = block_col; block_col++;
+                    block_changed = true;
                 }
             }
         }
