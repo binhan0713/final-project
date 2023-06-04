@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Media;
 namespace final_project
 {
     public partial class Form1 : Form
@@ -38,7 +38,15 @@ namespace final_project
        
         public Form1()
         {
+
             InitializeComponent();
+            //axWindowsMediaPlayer1.uiMode = "none";
+
+            // 設置控制項的 URL 屬性為視頻文件的路徑
+            //axWindowsMediaPlayer1.URL = "./space.mp4";
+            // 播放視頻
+            //axWindowsMediaPlayer1.Ctlcontrols.play();
+            //axWindowsMediaPlayer1.settings.setMode("loop", true);
             WindowState = FormWindowState.Maximized;//最大化窗體
             block_type = (uint)rander.Next(0, 7) + 1;
             block_type_pre = block_type;
