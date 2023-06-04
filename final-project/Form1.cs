@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.Threading;
+
 namespace final_project
 {
     public partial class Form1 : Form
@@ -147,9 +149,9 @@ namespace final_project
                 full_line_check();
                 if (block_row == 20)
                 {
-                    MessageBox.Show("Game Over! 請按下Enter重新開始");
                     end = true;
                     timer1.Enabled = false;
+                    MessageBox.Show("Game Over! 請按下Enter重新開始");
                     return;
                 };
                 block_type = block_type_next;
@@ -240,11 +242,12 @@ namespace final_project
                 {
                     init_game();
                     timer1.Enabled = true;
+                    end = false;
                 }
                 
             }
 
-            if(e.KeyCode == Keys.Down)//離開遊戲
+            if(e.KeyCode == Keys.Down)
             {
                 timer1.Interval = 40;
             }
@@ -292,10 +295,10 @@ namespace final_project
             block_count = 0;
             score = 0;
             game_mode = 1;
-
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
+
         }
         void store_block()
         {
