@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Media;
 namespace final_project
 {
     public partial class Form1 : Form
 
     {
+        bool israndon = true;
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
         Label[,] temp = new Label[4, 4];//暫存方塊
         Label[,] next = new Label[4, 3];   //next area, total 12 grids
@@ -113,7 +114,11 @@ namespace final_project
 
                 if (block_row == 19 && !exchange)
                 {
-                    block_type_next = (uint)rander.Next(0, 7) + 1;
+                    if (israndon)
+                    {
+                        block_type_next = (uint)rander.Next(0, 7) + 1;
+                        israndon = false;
+                    }
                     display_next_block(block_type_next);
                     block_count++;
                     score += 5;
@@ -156,6 +161,7 @@ namespace final_project
                 block_col_pre = 4;
                 block_type_pre = block_type;
                 block_changed = false;
+                israndon = true;
             }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -221,8 +227,9 @@ namespace final_project
 
             if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
+
                 while (block_row != 20)
-                    timer1_Tick(sender, e);
+                    timer1_Tick(sender, e); 
             }
 
             if(e.KeyCode == Keys.Down)//離開遊戲
