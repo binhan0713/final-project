@@ -114,10 +114,10 @@ namespace final_project
                         label_level.Text = "Level:" + (1010 - timer_interval) / 50;
                     }
                 }
-                update_block(block_row, block_col, block_type);
                 show_grids();
                 exchange = false;
                 erase_block(block_row_pre, block_col_pre, block_type_pre);
+                update_block(block_row, block_col, block_type);
                 block_row_pre = block_row;
                 block_changed = false;
             }
@@ -1018,80 +1018,61 @@ namespace final_project
             switch (type)
             {
                 case 1:
-                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 2, j] = grids_color[i + 3, j] = Color.White;
                     shade[i,j] = shade[i + 1, j] = shade[i + 2, j] = shade[i + 3, j] = true;
                     break;
                 case 11:
-                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i, j + 2] = grids_color[i, j + 3] = Color.White;
                     shade[i, j] = shade[i, j + 1] = shade[i, j + 2] = shade[i, j + 3] = true;
                     break;
                 case 2:
-                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = Color.White;
                     shade[i, j] = shade[i + 1, j] = shade[i, j + 1] = shade[i + 1, j + 1] = true;
                     break;
                 case 3:
-                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j - 1] = grids_color[i, j + 1] = Color.White;
                     shade[i, j] = shade[i + 1, j] = shade[i + 1, j - 1] = shade[i, j + 1] = true;
                     break;
                 case 13:
-                    grids_color[i, j] = grids_color[i - 1, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = Color.White;
                     shade[i, j] = shade[i - 1, j] = shade[i, j + 1] = shade[i + 1, j + 1] = true;
                     break;
                 case 4:
-                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j] = grids_color[i + 1, j + 1] = Color.White;
                     shade[i, j] = shade[i, j - 1] = shade[i + 1, j] = shade[i + 1, j + 1] = true;
                     break;
                 case 14:
-                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i, j + 1] = grids_color[i - 1, j + 1] = Color.White;
                     shade[i, j] = shade[i + 1, j] = shade[i, j + 1] = shade[i - 1, j + 1] = true;
                     break;
                 case 5:
-                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j + 1] = grids_color[i + 1, j + 2] = Color.White;
                     shade[i, j] = shade[i + 1, j] = shade[i + 1, j + 1] = shade[i + 1, j + 2] = true;
                     break;
                 case 15:
-                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j - 1] = grids_color[i + 2, j - 1] = Color.White;
                     shade[i, j] = shade[i, j - 1] = shade[i + 1, j - 1] = shade[i + 2, j - 1] = true;
                     break;
                 case 25:
-                    grids_color[i, j] = grids_color[i - 1, j] = grids_color[i - 1, j - 1] = grids_color[i - 1, j - 2] = Color.White;
                     shade[i, j] = shade[i - 1, j] = shade[i - 1, j - 1] = shade[i - 1, j - 2] = true;
                     break;
                 case 35:
-                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i - 1, j + 1] = grids_color[i - 2, j + 1] = Color.White;
                     shade[i, j] = shade[i, j + 1] = shade[i - 1, j + 1] = shade[i - 2, j + 1] = true;
                     break;
                 case 6:
-                    grids_color[i, j] = grids_color[i + 1, j] = grids_color[i + 1, j - 1] = grids_color[i + 1, j - 2] = Color.White;
                     shade[i, j] = shade[i + 1, j] = shade[i + 1, j - 1] = shade[i + 1, j - 2] = true;
                     break;
                 case 16:
-                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i + 1, j + 1] = grids_color[i + 2, j + 1] = Color.White;
                     shade[i, j] = shade[i, j + 1] = shade[i + 1, j + 1] = shade[i + 2, j + 1] = true;
                     break;
                 case 26:
-                    grids_color[i, j] = grids_color[i - 1, j] = grids_color[i - 1, j + 1] = grids_color[i - 1, j + 2] = Color.White;
                     shade[i, j] = shade[i - 1, j] = shade[i - 1, j + 1] = shade[i - 1, j + 2] = true;
                     break;
                 case 36:
-                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i - 1, j - 1] = grids_color[i - 2, j - 1] = Color.White;
                     shade[i, j] = shade[i, j - 1] = shade[i - 1, j - 1] = shade[i - 2, j - 1] = true;
                     break;
 
                 case 7:
-                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i, j + 1] = grids_color[i + 1, j] = Color.White;
                     shade[i, j] = shade[i, j - 1] = shade[i, j + 1] = shade[i + 1, j] = true;
                     break;
                 case 17:
-                    grids_color[i, j] = grids_color[i, j + 1] = grids_color[i - 1, j] = grids_color[i + 1, j] = Color.White;
                     shade[i, j] = shade[i, j + 1] = shade[i - 1, j] = shade[i + 1, j] = true;
                     break;
                 case 27:
-                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i, j + 1] = grids_color[i - 1, j] = Color.White;
                     shade[i, j] = shade[i, j - 1] = shade[i, j + 1] = shade[i - 1, j] = true;
                     break;
                 case 37:
-                    grids_color[i, j] = grids_color[i, j - 1] = grids_color[i + 1, j] = grids_color[i - 1, j] = Color.White;
                     shade[i, j] = shade[i, j - 1] = shade[i + 1, j] = shade[i - 1, j] = true;
                     break;
             }
