@@ -281,6 +281,10 @@ namespace final_project
         
         void init_game()
         {
+            for (uint i = 0; i < 24; i++)
+                for (uint j = 0; j < 10; j++)
+                    signs[i, j] = false;
+            show_grids();
             block_type = (uint)rander.Next(0, 7) + 1;
             block_type_pre = block_type;
             block_row = 20;
@@ -295,9 +299,7 @@ namespace final_project
             block_count = 0;
             score = 0;
             game_mode = 1;
-            for (uint i = 0; i < 24; i++)
-                for (uint j = 0; j < 10; j++)
-                    signs[i, j] = false;
+            
 
         }
         void store_block()
