@@ -219,12 +219,9 @@ namespace final_project
 
             if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
-                if(block_row>19)
-                {
-                    block_row = 19;
-                }
+
                 while (block_row != 20)
-                    timer1_Tick(sender, e);
+                    timer1_Tick(sender, e); 
             }
 
             if(e.KeyCode == Keys.Down)//離開遊戲
