@@ -100,15 +100,11 @@ namespace final_project
             if (y_direction(block_type, block_row, block_col))
             {
                 block_row_pre = block_row; block_row_pre = block_row; block_type_pre = block_type;
+
                 block_row--;
 
                 if (block_row == 19 && !exchange)
                 {
-                    if (israndon)
-                    {
-                        block_type_next = (uint)rander.Next(0, 7) + 1;
-                        israndon = false;
-                    }
                     display_next_block(block_type_next);
                     block_count++;
                     score += 5;
@@ -152,8 +148,9 @@ namespace final_project
                 block_row_pre = 20;
                 block_col_pre = 4;
                 block_type_pre = block_type;
-                block_changed = false;
-                israndon = true;
+                block_changed = false;  
+                block_type_next = (uint)rander.Next(0, 7) + 1;
+;
             }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -219,7 +216,11 @@ namespace final_project
 
             if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
+                if(block_row==20)
+                {
+                    timer1_Tick(sender, e);
 
+                }
                 while (block_row != 20)
                     timer1_Tick(sender, e); 
             }
@@ -240,7 +241,6 @@ namespace final_project
             }
             if(e.KeyCode == Keys.ShiftKey)
             {
-                erase_block(block_row, block_col, block_type);
                 store_block();
             }
             if (block_changed)
@@ -287,7 +287,7 @@ namespace final_project
         {
             if(exchange_count == 0)
             {
-
+                erase_block(block_row, block_col, block_type);
                 if (block_type_temp == 0)
                 {
                     block_type = block_type % 10;
