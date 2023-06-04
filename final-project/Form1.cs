@@ -289,13 +289,11 @@ namespace final_project
                     temp[i, j].BackColor = Color.White;
             show_grids();
             block_type = (uint)rander.Next(0, 7) + 1;
-            block_type_pre = block_type;
             block_row = 20;
             block_col = 4;
             block_row_pre = 20;
             block_col_pre = 4;
-            block_type_pre = block_type;
-            block_type_next = block_type;
+
             block_changed = false;
             timer_interval = 1010;
             timer1.Interval = timer_interval;
@@ -303,9 +301,6 @@ namespace final_project
             score = 0;
             game_mode = 1;
             block_type_temp=0;
-
-
-
         }
         void store_block()
         {
