@@ -114,6 +114,11 @@ namespace final_project
         {
             if (y_direction(block_type, block_row, block_col))
             {
+                if (israndon)
+                {
+                    block_type_next = (uint)rander.Next(0, 7) + 1;
+                    israndon = false;
+                }               
                 block_row_pre = block_row; block_row_pre = block_row; block_type_pre = block_type;
 
                 block_row--;
@@ -160,9 +165,10 @@ namespace final_project
                 block_row_pre = 20;
                 block_col_pre = 4;
                 block_type_pre = block_type;
-                block_changed = false;  
-                block_type_next = (uint)rander.Next(0, 7) + 1;
-;
+                block_changed = false;
+                israndon = true;
+
+                ;
             }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -1141,7 +1147,6 @@ namespace final_project
                 }
             }
         }
-
 
     }
 
