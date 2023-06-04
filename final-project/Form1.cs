@@ -43,10 +43,12 @@ namespace final_project
             InitializeComponent();
             groupBox1.Text = "";
             axWindowsMediaPlayer1.uiMode = "none";//隱藏播放器的控制項
-            axWindowsMediaPlayer1.enableContextMenu = false;
             axWindowsMediaPlayer1.URL = "space.mp4";//播放音樂
             axWindowsMediaPlayer1.settings.setMode("loop", true);
-            
+            axWindowsMediaPlayer2.Visible = false;
+            axWindowsMediaPlayer2.URL = "QQ.mp3";
+            axWindowsMediaPlayer2.settings.setMode("loop", true);
+
             WindowState = FormWindowState.Maximized;//最大化窗體
             //設定音樂循環播放
             block_type = (uint)rander.Next(0, 7) + 1;

@@ -41,8 +41,10 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -138,6 +140,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.axWindowsMediaPlayer2);
             this.groupBox1.Controls.Add(this.axWindowsMediaPlayer1);
             this.groupBox1.Enabled = false;
             this.groupBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -156,6 +159,15 @@
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1145, 970);
             this.axWindowsMediaPlayer1.TabIndex = 0;
+            // 
+            // axWindowsMediaPlayer2
+            // 
+            this.axWindowsMediaPlayer2.Enabled = true;
+            this.axWindowsMediaPlayer2.Location = new System.Drawing.Point(3, 21);
+            this.axWindowsMediaPlayer2.Name = "axWindowsMediaPlayer2";
+            this.axWindowsMediaPlayer2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer2.OcxState")));
+            this.axWindowsMediaPlayer2.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer2.TabIndex = 1;
             // 
             // Form1
             // 
@@ -178,6 +190,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,6 +209,7 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.GroupBox groupBox1;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer2;
     }
 }
 
