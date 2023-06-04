@@ -13,6 +13,7 @@ namespace final_project
     public partial class Form1 : Form
 
     {
+        bool end = false;//紀錄遊戲是否結束
         bool israndon = true;
         bool[,] signs = new bool[24, 10];//紀錄每個方塊哪裡有東西
         Label[,] temp = new Label[4, 4];//暫存方塊
@@ -146,9 +147,8 @@ namespace final_project
                 full_line_check();
                 if (block_row == 20)
                 {
-                    label_info.Text = "Game Over!";
-                    button1.Visible = true;
-                    button1.Enabled = true;
+                    MessageBox.Show("Game Over! 請按下Enter重新開始");
+                    end = true;
                     timer1.Enabled = false;
                     return;
                 };
@@ -234,6 +234,15 @@ namespace final_project
                 while (block_row != 20)
                     timer1_Tick(sender, e); 
             }
+            if (e.KeyCode == Keys.Enter)//重新開始
+            {
+                if (end)
+                {
+                    init_game();
+                    timer1.Enabled = true;
+                }
+                
+            }
 
             if(e.KeyCode == Keys.Down)//離開遊戲
             {
@@ -265,11 +274,6 @@ namespace final_project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            init_game();
-            label_info.Text = "";
-            button1.Visible = false;
-            button1.Enabled = false;
-            timer1.Enabled = true;
         }
         
         void init_game()
