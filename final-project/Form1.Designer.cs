@@ -61,7 +61,7 @@
             // 
             this.label_block_count.AutoSize = true;
             this.label_block_count.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label_block_count.Location = new System.Drawing.Point(1232, 265);
+            this.label_block_count.Location = new System.Drawing.Point(1330, 265);
             this.label_block_count.Name = "label_block_count";
             this.label_block_count.Size = new System.Drawing.Size(49, 15);
             this.label_block_count.TabIndex = 0;
@@ -71,7 +71,7 @@
             // 
             this.label_score.AutoSize = true;
             this.label_score.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label_score.Location = new System.Drawing.Point(1232, 298);
+            this.label_score.Location = new System.Drawing.Point(1330, 298);
             this.label_score.Name = "label_score";
             this.label_score.Size = new System.Drawing.Size(43, 15);
             this.label_score.TabIndex = 1;
@@ -82,7 +82,7 @@
             this.label_level.AutoSize = true;
             this.label_level.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label_level.Font = new System.Drawing.Font("新細明體", 9F);
-            this.label_level.Location = new System.Drawing.Point(1232, 332);
+            this.label_level.Location = new System.Drawing.Point(1330, 332);
             this.label_level.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_level.Name = "label_level";
             this.label_level.Size = new System.Drawing.Size(43, 15);
@@ -104,7 +104,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(1215, 79);
+            this.label1.Location = new System.Drawing.Point(1325, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 15);
             this.label1.TabIndex = 221;
@@ -114,7 +114,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label2.Location = new System.Drawing.Point(556, 79);
+            this.label2.Location = new System.Drawing.Point(665, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 222;
@@ -136,7 +136,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(1003, 956);
+            this.groupBox1.Size = new System.Drawing.Size(1232, 956);
             this.groupBox1.TabIndex = 223;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -154,11 +154,11 @@
             // axWindowsMediaPlayer1
             // 
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(-142, -83);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(-530, -500);
             this.axWindowsMediaPlayer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1145, 1039);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(2000, 2000);
             this.axWindowsMediaPlayer1.TabIndex = 0;
             // 
             // imageList1

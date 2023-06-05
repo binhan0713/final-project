@@ -74,7 +74,7 @@ namespace final_project
                     grids[i, j].Height = 30;
                     grids[i, j].BorderStyle = BorderStyle.FixedSingle;
                     grids[i, j].BackColor = Color.Black;
-                    grids[i, j].Left = 550 + 30 * j;
+                    grids[i, j].Left = 630 + 30 * j;
                     grids[i, j].Top = 650 - i * 30;
                     grids[i, j].Visible = true;
                     this.Controls.Add(grids[i, j]);
@@ -91,7 +91,7 @@ namespace final_project
                     next[i, j].Height = 20;
                     next[i, j].BorderStyle = BorderStyle.FixedSingle;
                     next[i, j].BackColor = Color.White;
-                    next[i, j].Left = 915 + 20 * j;
+                    next[i, j].Left = 995 + 20 * j;
                     next[i, j].Top = 150 - i * 20;
                     next[i, j].Visible = true;
                     this.Controls.Add(next[i, j]);
@@ -107,7 +107,7 @@ namespace final_project
                     temp[i, j].Height = 20;
                     temp[i, j].BorderStyle = BorderStyle.FixedSingle;
                     temp[i, j].BackColor = Color.White;
-                    temp[i, j].Left = 415 + 20 * j;
+                    temp[i, j].Left = 495 + 20 * j;
                     temp[i, j].Top = 150 - i * 20;
                     temp[i, j].Visible = true;
                     this.Controls.Add(temp[i, j]);
@@ -163,6 +163,7 @@ namespace final_project
                 {
                     end = true;
                     timer1.Enabled = false;
+                    timer2.Enabled = false;
                     MessageBox.Show("Game Over! 請按下Enter重新開始");
                     return;
                 };
@@ -259,6 +260,7 @@ namespace final_project
                 {
                     init_game();
                     timer1.Enabled = true;
+                    timer2.Enabled = true;
                     end = false;
                 }
                 
@@ -298,6 +300,7 @@ namespace final_project
         
         void init_game()
         {
+
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
