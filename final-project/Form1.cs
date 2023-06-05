@@ -15,6 +15,7 @@ namespace final_project
     public partial class Form1 : Form
 
     {
+
         Color grayColor = Color.FromArgb(205, 0, 0, 0);
         bool end = false;//紀錄遊戲是否結束
         bool israndon = true;
@@ -40,7 +41,6 @@ namespace final_project
         int timer_interval = 1010;
         int game_mode = 1;
         Random rander = new Random();
-       
         public Form1()
         {
 
@@ -52,6 +52,12 @@ namespace final_project
             axWindowsMediaPlayer2.Visible = false;
             axWindowsMediaPlayer2.URL = "QQ.mp3";
             axWindowsMediaPlayer2.settings.setMode("loop", true);
+            axWindowsMediaPlayer3.Visible = false;
+            axWindowsMediaPlayer3.settings.autoStart = false;
+            axWindowsMediaPlayer3.URL = "drum.mp3";//播放音樂
+            axWindowsMediaPlayer4.Visible = false;
+            axWindowsMediaPlayer4.settings.autoStart = false;
+            axWindowsMediaPlayer4.URL = "full_line.mp3";//播放音樂
 
             WindowState = FormWindowState.Maximized;//最大化窗體
             //設定音樂循環播放
@@ -235,13 +241,17 @@ namespace final_project
 
             if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
-                if(block_row==20)
+                if (!end)
+                    axWindowsMediaPlayer3.Ctlcontrols.play();
+                if (block_row==20)
                 {
                     timer1_Tick(sender, e);
 
                 }
                 while (block_row != 20)
-                    timer1_Tick(sender, e); 
+                    timer1_Tick(sender, e);
+                
+
             }
             if (e.KeyCode == Keys.Enter)//重新開始
             {
@@ -823,6 +833,7 @@ namespace final_project
 
                 if (row_sum == 10)
                 {
+                    axWindowsMediaPlayer4.Ctlcontrols.play();
                     //score += 20;
                     //label_score.Text = "Score:" + score.ToString();
                     for (j = 0; j < 10; j++)
