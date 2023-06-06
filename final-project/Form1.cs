@@ -202,15 +202,13 @@ namespace final_project
                         label_info.Visible = true;
                         textBox1.Visible = true;
                         label_info.BringToFront();
-                        textBox1.BringToFront();
+
                         label_info.Text = "遊戲結束，你的分數是" + score.ToString() + "分\r\n     按下ENTER再來一場";
                         // 在遊戲結束時，將玩家的分數加入 scores 列表中
                         int newScore = Convert.ToInt32(score);
                         if (scores.Count < 10)
                         {
-                            scores.Add(newScore);
-                            textBox1.AppendText("you become the" + rank[scores.Count()-1]+ "!!!!!!\r\n");
-
+                            scores.Add(newScore); 
                         }
                         else
                         {
@@ -223,10 +221,18 @@ namespace final_project
                                     break;
                                 }
                             }
-                            textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
                         }
                         // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
+                        if (scores.Count != 10)
+                        {
+                            textBox1.AppendText("you become the" + rank[scores.Count() - 1] + "!!!!!!\r\n");
+                        }
+                        else
+                        {
+                            textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
+                        }
+
                         // 將 scores 列表序列化為 JSON 字串，並將其寫入 scores.json 檔案中
                         json = JsonSerializer.Serialize(scores);
                         File.WriteAllText("scores.json", json);
@@ -241,6 +247,7 @@ namespace final_project
                         json = JsonSerializer.Serialize(scores);
                         File.WriteAllText("scores.json", json);
                     }
+                    textBox1.BringToFront();
                     return;
                 };
                 block_type = block_type_next;
