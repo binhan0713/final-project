@@ -11,6 +11,7 @@ using System.Media;
 using System.Threading;
 using System.IO;
 using System.Text.Json;
+
 namespace final_project
 {
     public partial class Form1 : Form
@@ -24,7 +25,7 @@ namespace final_project
         Label[,] temp = new Label[4, 4];//暫存方塊
         Label[,] next = new Label[4, 3];   //next area, total 12 grids
         Label[,] grids = new Label[24, 10];//game area, total 200 grids
-        Color[,] grids_color = new Color[24, 10];//紀錄每個方塊的顏色
+        Color[,] grids_color = new Color[24, 10];//紀    錄每個方塊的顏色
         bool[,] shade = new bool[24, 10];//紀錄每個方塊的陰影
         bool exchange = false;//紀錄是否交換
         int exchange_count = 0;//紀錄交換次數
@@ -47,6 +48,26 @@ namespace final_project
         {
 
             InitializeComponent();
+            Font ShowFont(string name, float size)
+            {
+                Font font = null;
+                System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
+                privateFonts.AddFontFile("./Minecraft.ttf");
+                font = new Font(privateFonts.Families[0], size);
+                return font;
+            }
+            void ChangecontrolFont(Font font)
+            {
+                label_block_count.Font = font;
+                label1.Font = font;
+                label2.Font = font;
+                label_info.Font = font;
+                label_level.Font = font;
+                label_score.Font = font;
+
+            }
+            ChangecontrolFont(ShowFont("Minecraft", 18));
+
             groupBox1.Text = "";
             axWindowsMediaPlayer1.uiMode = "none";//隱藏播放器的控制項
             axWindowsMediaPlayer1.URL = "space.mp4";//播放音樂
