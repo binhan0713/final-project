@@ -218,10 +218,11 @@ namespace final_project
                                 {
                                     scores.Insert(i, newScore);
                                     scores.RemoveAt(10);
+                                    textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
                                     break;
                                 }
-                                textBox1.AppendText("What a pity. Try it again!!");
                             }
+                            textBox1.AppendText("So Sad :<");
                         }
                         // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
@@ -229,10 +230,7 @@ namespace final_project
                         {
                             textBox1.AppendText("you become the" + rank[scores.Count() - 1] + "!!!!!!\r\n");
                         }
-                        else
-                        {
-                            textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
-                        }
+
 
                         // 將 scores 列表序列化為 JSON 字串，並將其寫入 scores.json 檔案中
                         json = JsonSerializer.Serialize(scores);
