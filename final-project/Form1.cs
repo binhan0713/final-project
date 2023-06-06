@@ -222,7 +222,7 @@ namespace final_project
                                     break;
                                 }
                             }
-                            textBox1.AppendText("So Sad :<");
+                            textBox1.AppendText("So Sad :<\r\n");
                         }
                         // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
