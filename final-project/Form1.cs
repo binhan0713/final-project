@@ -267,7 +267,7 @@ namespace final_project
                 ;
             }
         }
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private async void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.P)//暫停
             {
@@ -298,7 +298,6 @@ namespace final_project
                 block_type_pre = block_type;
                 block_col_pre = block_col; block_row_pre = block_row;
                 block_type = next_block_type(block_type, block_row, block_col);
-                //MessageBox.Show(block_type.ToString());
                 if (block_type != block_type_pre)
                     block_changed = true;
 
@@ -349,6 +348,7 @@ namespace final_project
                 {
                     label_info.Visible = false;
                     textBox1.Visible = false;
+                    textBox1.Clear();
                     init_game();
                     timer1.Enabled = true;
                     timer2.Enabled = true;
@@ -397,12 +397,6 @@ namespace final_project
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
                     temp[i, j].BackColor = Color.White;
-            for (int i = 0; i < 20; i++)
-                for (int j = 0; j < 10; j++)
-                {
-                    grids[i, j].BringToFront();
-                }
-            show_grids();
             block_type = (uint)rander.Next(0, 7) + 1;
             block_row = 20;
             block_col = 4;
@@ -416,8 +410,8 @@ namespace final_project
             score = 0;
             game_mode = 1;
             block_type_temp=0;
-            textBox1.Clear();
-
+            show_grids();
+            groupBox1.SendToBack();
         }
         void store_block()
         {
