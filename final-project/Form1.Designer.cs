@@ -39,16 +39,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.axWindowsMediaPlayer4 = new AxWMPLib.AxWindowsMediaPlayer();
             this.axWindowsMediaPlayer3 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -60,8 +60,9 @@
             // label_block_count
             // 
             this.label_block_count.AutoSize = true;
-            this.label_block_count.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label_block_count.BackColor = System.Drawing.Color.Black;
             this.label_block_count.Font = new System.Drawing.Font("jf open 粉圓 2.0", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_block_count.ForeColor = System.Drawing.Color.White;
             this.label_block_count.Location = new System.Drawing.Point(1330, 265);
             this.label_block_count.Name = "label_block_count";
             this.label_block_count.Size = new System.Drawing.Size(58, 17);
@@ -71,8 +72,9 @@
             // label_score
             // 
             this.label_score.AutoSize = true;
-            this.label_score.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label_score.BackColor = System.Drawing.Color.Black;
             this.label_score.Font = new System.Drawing.Font("jf open 粉圓 2.0", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_score.ForeColor = System.Drawing.Color.White;
             this.label_score.Location = new System.Drawing.Point(1330, 298);
             this.label_score.Name = "label_score";
             this.label_score.Size = new System.Drawing.Size(52, 17);
@@ -82,8 +84,9 @@
             // label_level
             // 
             this.label_level.AutoSize = true;
-            this.label_level.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label_level.BackColor = System.Drawing.Color.Black;
             this.label_level.Font = new System.Drawing.Font("jf open 粉圓 2.0", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_level.ForeColor = System.Drawing.Color.White;
             this.label_level.Location = new System.Drawing.Point(1330, 332);
             this.label_level.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_level.Name = "label_level";
@@ -97,7 +100,7 @@
             this.label_info.BackColor = System.Drawing.SystemColors.WindowText;
             this.label_info.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.ForeColor = System.Drawing.Color.Red;
-            this.label_info.Location = new System.Drawing.Point(1229, 372);
+            this.label_info.Location = new System.Drawing.Point(830, 300);
             this.label_info.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_info.Name = "label_info";
             this.label_info.Size = new System.Drawing.Size(0, 34);
@@ -106,9 +109,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.BackColor = System.Drawing.Color.Black;
             this.label1.Font = new System.Drawing.Font("jf open 粉圓 2.0", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(1330, 79);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(1318, 79);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 23);
             this.label1.TabIndex = 221;
@@ -117,9 +121,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label2.BackColor = System.Drawing.Color.Black;
             this.label2.Font = new System.Drawing.Font("jf open 粉圓 2.0", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(665, 79);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(650, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 222;
@@ -145,6 +150,26 @@
             this.groupBox1.TabIndex = 223;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // axWindowsMediaPlayer2
+            // 
+            this.axWindowsMediaPlayer2.Enabled = true;
+            this.axWindowsMediaPlayer2.Location = new System.Drawing.Point(3, 21);
+            this.axWindowsMediaPlayer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.axWindowsMediaPlayer2.Name = "axWindowsMediaPlayer2";
+            this.axWindowsMediaPlayer2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer2.OcxState")));
+            this.axWindowsMediaPlayer2.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer2.TabIndex = 1;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(-530, -500);
+            this.axWindowsMediaPlayer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(2000, 2000);
+            this.axWindowsMediaPlayer1.TabIndex = 0;
             // 
             // imageList1
             // 
@@ -176,26 +201,6 @@
             this.axWindowsMediaPlayer3.Size = new System.Drawing.Size(118, 46);
             this.axWindowsMediaPlayer3.TabIndex = 224;
             // 
-            // axWindowsMediaPlayer2
-            // 
-            this.axWindowsMediaPlayer2.Enabled = true;
-            this.axWindowsMediaPlayer2.Location = new System.Drawing.Point(3, 21);
-            this.axWindowsMediaPlayer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.axWindowsMediaPlayer2.Name = "axWindowsMediaPlayer2";
-            this.axWindowsMediaPlayer2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer2.OcxState")));
-            this.axWindowsMediaPlayer2.Size = new System.Drawing.Size(75, 23);
-            this.axWindowsMediaPlayer2.TabIndex = 1;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(-530, -500);
-            this.axWindowsMediaPlayer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(2000, 2000);
-            this.axWindowsMediaPlayer1.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -217,10 +222,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

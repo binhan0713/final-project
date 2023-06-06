@@ -196,8 +196,7 @@ namespace final_project
                         //讀取 JSON 檔案中的分數紀錄，並將它們反序列化為 List<int>
                         label_info.Visible = true;
                         label_info.BringToFront();
-                        label_info.Location = new Point(605, 300);
-                        label_info.Text = "遊戲結束，你的分數是" + score.ToString() + "分\r\n       按下ENTER再來一場";
+                        label_info.Text = "遊戲結束，你的分數是" + score.ToString() + "分\r\n     按下ENTER再來一場";
                         MessageBox.Show("遊戲結束，你的分數是" + score.ToString() + "分", "遊戲結束", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // 在遊戲結束時，將玩家的分數加入 scores 列表中
                         int newScore = Convert.ToInt32(score);
