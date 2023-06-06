@@ -15,6 +15,7 @@ namespace final_project
     public partial class Form1 : Form
 
     {
+
         Color grayColor = Color.FromArgb(205, 0, 0, 0);
         bool end = false;//紀錄遊戲是否結束
         bool israndon = true;
@@ -40,9 +41,7 @@ namespace final_project
         int timer_interval = 1010;
         int game_mode = 1;
         Random rander = new Random();
-
-        public object JsonSerializer { get; private set; }
-
+       
         public Form1()
         {
 
@@ -54,6 +53,12 @@ namespace final_project
             axWindowsMediaPlayer2.Visible = false;
             axWindowsMediaPlayer2.URL = "QQ.mp3";
             axWindowsMediaPlayer2.settings.setMode("loop", true);
+            axWindowsMediaPlayer3.Visible = false;
+            axWindowsMediaPlayer3.settings.autoStart = false;
+            axWindowsMediaPlayer3.URL = "drum.mp3";//播放音樂
+            axWindowsMediaPlayer4.Visible = false;
+            axWindowsMediaPlayer4.settings.autoStart = false;
+            axWindowsMediaPlayer4.URL = "full_line.mp3";//播放音樂
 
             WindowState = FormWindowState.Maximized;//最大化窗體
             //設定音樂循環播放
@@ -70,7 +75,7 @@ namespace final_project
                     grids[i, j].Height = 30;
                     grids[i, j].BorderStyle = BorderStyle.FixedSingle;
                     grids[i, j].BackColor = Color.Black;
-                    grids[i, j].Left = 550 + 30 * j;
+                    grids[i, j].Left = 630 + 30 * j;
                     grids[i, j].Top = 650 - i * 30;
                     grids[i, j].Visible = true;
                     this.Controls.Add(grids[i, j]);
@@ -87,7 +92,7 @@ namespace final_project
                     next[i, j].Height = 20;
                     next[i, j].BorderStyle = BorderStyle.FixedSingle;
                     next[i, j].BackColor = Color.White;
-                    next[i, j].Left = 915 + 20 * j;
+                    next[i, j].Left = 995 + 20 * j;
                     next[i, j].Top = 150 - i * 20;
                     next[i, j].Visible = true;
                     this.Controls.Add(next[i, j]);
@@ -103,7 +108,7 @@ namespace final_project
                     temp[i, j].Height = 20;
                     temp[i, j].BorderStyle = BorderStyle.FixedSingle;
                     temp[i, j].BackColor = Color.White;
-                    temp[i, j].Left = 415 + 20 * j;
+                    temp[i, j].Left = 495 + 20 * j;
                     temp[i, j].Top = 150 - i * 20;
                     temp[i, j].Visible = true;
                     this.Controls.Add(temp[i, j]);
@@ -251,13 +256,17 @@ namespace final_project
 
             if (e.KeyCode == Keys.Space)//方塊直接落到底部
             {
-                if(block_row==20)
+                if (!end)
+                    axWindowsMediaPlayer3.Ctlcontrols.play();
+                if (block_row==20)
                 {
                     timer1_Tick(sender, e);
 
                 }
                 while (block_row != 20)
-                    timer1_Tick(sender, e); 
+                    timer1_Tick(sender, e);
+                
+
             }
             if (e.KeyCode == Keys.Enter)//重新開始
             {
@@ -265,6 +274,7 @@ namespace final_project
                 {
                     init_game();
                     timer1.Enabled = true;
+                    timer2.Enabled = true;
                     end = false;
                 }
                 
@@ -304,6 +314,7 @@ namespace final_project
         
         void init_game()
         {
+
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
@@ -839,6 +850,7 @@ namespace final_project
 
                 if (row_sum == 10)
                 {
+                    axWindowsMediaPlayer4.Ctlcontrols.play();
                     //score += 20;
                     //label_score.Text = "Score:" + score.ToString();
                     for (j = 0; j < 10; j++)
