@@ -61,9 +61,10 @@
             // 
             this.label_block_count.AutoSize = true;
             this.label_block_count.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label_block_count.Font = new System.Drawing.Font("jf open 粉圓 2.0", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_block_count.Location = new System.Drawing.Point(1330, 265);
             this.label_block_count.Name = "label_block_count";
-            this.label_block_count.Size = new System.Drawing.Size(49, 15);
+            this.label_block_count.Size = new System.Drawing.Size(58, 17);
             this.label_block_count.TabIndex = 0;
             this.label_block_count.Text = "Blocks:";
             // 
@@ -71,9 +72,10 @@
             // 
             this.label_score.AutoSize = true;
             this.label_score.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label_score.Font = new System.Drawing.Font("jf open 粉圓 2.0", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_score.Location = new System.Drawing.Point(1330, 298);
             this.label_score.Name = "label_score";
-            this.label_score.Size = new System.Drawing.Size(43, 15);
+            this.label_score.Size = new System.Drawing.Size(52, 17);
             this.label_score.TabIndex = 1;
             this.label_score.Text = "Score:";
             // 
@@ -81,11 +83,11 @@
             // 
             this.label_level.AutoSize = true;
             this.label_level.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label_level.Font = new System.Drawing.Font("新細明體", 9F);
+            this.label_level.Font = new System.Drawing.Font("jf open 粉圓 2.0", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_level.Location = new System.Drawing.Point(1330, 332);
             this.label_level.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_level.Name = "label_level";
-            this.label_level.Size = new System.Drawing.Size(43, 15);
+            this.label_level.Size = new System.Drawing.Size(48, 17);
             this.label_level.TabIndex = 218;
             this.label_level.Text = "Level:";
             // 
@@ -104,21 +106,23 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label1.Location = new System.Drawing.Point(1325, 79);
+            this.label1.Font = new System.Drawing.Font("jf open 粉圓 2.0", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label1.Location = new System.Drawing.Point(1330, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 15);
+            this.label1.Size = new System.Drawing.Size(64, 23);
             this.label1.TabIndex = 221;
-            this.label1.Text = "下一個方塊";
+            this.label1.Text = "NEXT";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label2.Font = new System.Drawing.Font("jf open 粉圓 2.0", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.Location = new System.Drawing.Point(665, 79);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.Size = new System.Drawing.Size(67, 23);
             this.label2.TabIndex = 222;
-            this.label2.Text = "暫存方塊";
+            this.label2.Text = "HOLD";
             // 
             // timer2
             // 
@@ -165,13 +169,13 @@
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "dark_blue.jpg");
-            this.imageList1.Images.SetKeyName(1, "blue.jpg");
-            this.imageList1.Images.SetKeyName(2, "purple.jpg");
-            this.imageList1.Images.SetKeyName(3, "orange.jpg");
-            this.imageList1.Images.SetKeyName(4, "red.jpg");
-            this.imageList1.Images.SetKeyName(5, "yellow.jpg");
-            this.imageList1.Images.SetKeyName(6, "green.jpg");
+            this.imageList1.Images.SetKeyName(0, "blue.png");
+            this.imageList1.Images.SetKeyName(1, "light_blue.png");
+            this.imageList1.Images.SetKeyName(2, "purple.png");
+            this.imageList1.Images.SetKeyName(3, "orange.png");
+            this.imageList1.Images.SetKeyName(4, "red.png");
+            this.imageList1.Images.SetKeyName(5, "yellow.png");
+            this.imageList1.Images.SetKeyName(6, "green.png");
             // 
             // axWindowsMediaPlayer3
             // 
