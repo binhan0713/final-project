@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 using System.Threading;
-
+using System.IO;
 namespace final_project
 {
     public partial class Form1 : Form
@@ -40,7 +40,9 @@ namespace final_project
         int timer_interval = 1010;
         int game_mode = 1;
         Random rander = new Random();
-       
+
+        public object JsonSerializer { get; private set; }
+
         public Form1()
         {
 
@@ -157,6 +159,20 @@ namespace final_project
                 {
                     end = true;
                     timer1.Enabled = false;
+                    // 讀取 JSON 檔案中的分數紀錄，並將它們反序列化為 List<int>
+                    string json = File.ReadAllText("./score.json");
+                    List<int> scores = JsonSerializer.Deserialize<List<int>>(json);
+
+                    // 在遊戲結束時，將玩家的分數加入 scores 列表中
+                    int newScore =Convert.ToInt32(score);
+                    scores.Add(newScore);
+
+                    // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
+                    scores = scores.OrderByDescending(s => s).Take(10).ToList();
+
+                    // 將 scores 列表序列化為 JSON 字串，並將其寫入 scores.json 檔案中
+                    json = JsonSerializer.Serialize(scores);
+                    File.WriteAllText("scores.json", json);
                     MessageBox.Show("Game Over! 請按下Enter重新開始");
                     return;
                 };
