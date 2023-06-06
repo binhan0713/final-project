@@ -201,11 +201,17 @@ namespace final_project
                         //讀取 JSON 檔案中的分數紀錄，並將它們反序列化為 List<int>
                         label_info.Visible = true;
                         textBox1.Visible = true;
+                        for (int i = 0; i < 20; i++)
+                            for (int j = 0; j < 10; j++)
+                            {
+                                grids[i, j].SendToBack();
+                            }
+                        textBox1.BringToFront();
                         label_info.BringToFront();
-
-                        label_info.Text = "遊戲結束，你的分數是" + score.ToString() + "分\r\n     按下ENTER再來一場";
+                        label_info.Text = "Game Over! You got " + score.ToString() + "\r\n\r\nPress ENTER to try again";
                         // 在遊戲結束時，將玩家的分數加入 scores 列表中
                         int newScore = Convert.ToInt32(score);
+                        
                         if (scores.Count < 10)
                         {
                             scores.Add(newScore); 
@@ -222,7 +228,8 @@ namespace final_project
                                     break;
                                 }
                             }
-                            textBox1.AppendText("So Sad :<");
+                            if(newScore<=scores.Last())
+                                textBox1.AppendText("So Sad :<\r\n");
                         }
                         // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
@@ -246,7 +253,6 @@ namespace final_project
                         json = JsonSerializer.Serialize(scores);
                         File.WriteAllText("scores.json", json);
                     }
-                    textBox1.BringToFront();
                     return;
                 };
                 block_type = block_type_next;
@@ -385,7 +391,11 @@ namespace final_project
         
         void init_game()
         {
-
+            for (int i = 0; i < 20; i++)
+                for (int j = 0; j < 10; j++)
+                {
+                    grids[i, j].BringToFront();
+                }
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
