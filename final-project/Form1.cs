@@ -391,17 +391,17 @@ namespace final_project
         
         void init_game()
         {
-            for (int i = 0; i < 20; i++)
-                for (int j = 0; j < 10; j++)
-                {
-                    grids[i, j].BringToFront();
-                }
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
                     temp[i, j].BackColor = Color.White;
+            for (int i = 0; i < 20; i++)
+                for (int j = 0; j < 10; j++)
+                {
+                    grids[i, j].BringToFront();
+                }
             show_grids();
             block_type = (uint)rander.Next(0, 7) + 1;
             block_row = 20;
