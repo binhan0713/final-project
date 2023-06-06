@@ -64,6 +64,7 @@ namespace final_project
                 label_info.Font = font;
                 label_level.Font = font;
                 label_score.Font = font;
+                textBox1.Font = font;
 
             }
             ChangecontrolFont(ShowFont("Minecraft", 18));
@@ -136,8 +137,10 @@ namespace final_project
                 }
             // init variables of the game
             init_game();
+            textBox1.Visible = false;
+            textBox1.BackColor = Color.Black;
         }
-
+        
         public async void timer1_Tick(object sender, EventArgs e)
         {
             if (y_direction(block_type, block_row, block_col))
@@ -192,18 +195,22 @@ namespace final_project
                     List<int> scores = new List<int>();
                     if (File.Exists(filePath))
                     {
+                        string[] rank = { "1th", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th" };
                         json = File.ReadAllText(filePath);
                         scores = JsonSerializer.Deserialize<List<int>>(json);
                         //讀取 JSON 檔案中的分數紀錄，並將它們反序列化為 List<int>
                         label_info.Visible = true;
+                        textBox1.Visible = true;
                         label_info.BringToFront();
+                        textBox1.BringToFront();
                         label_info.Text = "遊戲結束，你的分數是" + score.ToString() + "分\r\n     按下ENTER再來一場";
-                        MessageBox.Show("遊戲結束，你的分數是" + score.ToString() + "分", "遊戲結束", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // 在遊戲結束時，將玩家的分數加入 scores 列表中
                         int newScore = Convert.ToInt32(score);
                         if (scores.Count < 10)
                         {
                             scores.Add(newScore);
+                            textBox1.AppendText("you become the" + rank[scores.Count()-1]+ "!!!!!!\r\n");
+
                         }
                         else
                         {
@@ -216,12 +223,17 @@ namespace final_project
                                     break;
                                 }
                             }
+                            textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
                         }
                         // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
                         // 將 scores 列表序列化為 JSON 字串，並將其寫入 scores.json 檔案中
                         json = JsonSerializer.Serialize(scores);
                         File.WriteAllText("scores.json", json);
+                        for(int i=0; i<scores.Count;i++)
+                        {
+                            textBox1.AppendText(rank[i] +":  "+ scores[i]+"\r\n");
+                        }
                     }
                     else
                     {
@@ -324,6 +336,7 @@ namespace final_project
                 if (end)
                 {
                     label_info.Visible = false;
+                    textBox1.Visible = false;
                     init_game();
                     timer1.Enabled = true;
                     timer2.Enabled = true;
@@ -387,6 +400,8 @@ namespace final_project
             score = 0;
             game_mode = 1;
             block_type_temp=0;
+            textBox1.Clear();
+
         }
         void store_block()
         {
