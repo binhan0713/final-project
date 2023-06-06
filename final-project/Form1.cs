@@ -214,16 +214,18 @@ namespace final_project
                         }
                         else
                         {
-                            for (int i = 9; i >= 0; i--)
+                            for (int i = 0; i < 10; i++)
                             {
                                 if (newScore > scores[i])
                                 {
                                     scores.Insert(i, newScore);
                                     scores.RemoveAt(10);
+                                    textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
                                     break;
                                 }
+                                textBox1.AppendText("What a pity. Try it again!!");
                             }
-                            textBox1.AppendText("You beat the " + rank[scores.LastIndexOf(newScore)] + "-ranked!!!!!!\r\n");
+                            
                         }
                         // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
