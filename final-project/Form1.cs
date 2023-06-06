@@ -47,6 +47,25 @@ namespace final_project
         {
 
             InitializeComponent();
+            Font ShowFont(string name, float size)
+            {
+                Font font = null;
+                System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
+                privateFonts.AddFontFile("./Minecraft.ttf");
+                font = new Font(privateFonts.Families[0], size);
+                return font;
+            }
+            void ChangecontrolFont(Font font)
+            {
+                label_block_count.Font = font;
+                label1.Font = font;
+                label2.Font = font;
+                label_info.Font = font;
+                label_level.Font = font;
+                label_score.Font = font;
+
+            }
+            ChangecontrolFont(ShowFont("Minecraft", 18));
             groupBox1.Text = "";
             axWindowsMediaPlayer1.uiMode = "none";//隱藏播放器的控制項
             axWindowsMediaPlayer1.URL = "space.mp4";//播放音樂
