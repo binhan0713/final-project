@@ -412,6 +412,12 @@ namespace final_project
             block_type_temp=0;
             show_grids();
             groupBox1.SendToBack();
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 3; j++)
+                {
+                    temp[i, j].BackColor = Color.White;
+                    temp[i, j].Image = null;
+                }
         }
         void store_block()
         {
