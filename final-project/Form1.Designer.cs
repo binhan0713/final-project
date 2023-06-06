@@ -39,16 +39,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.axWindowsMediaPlayer4 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.axWindowsMediaPlayer3 = new AxWMPLib.AxWindowsMediaPlayer();
             this.axWindowsMediaPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.axWindowsMediaPlayer3 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.axWindowsMediaPlayer4 = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -94,6 +94,7 @@
             // label_info
             // 
             this.label_info.AutoSize = true;
+            this.label_info.BackColor = System.Drawing.SystemColors.WindowText;
             this.label_info.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_info.ForeColor = System.Drawing.Color.Red;
             this.label_info.Location = new System.Drawing.Point(1229, 372);
@@ -145,6 +146,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "blue.png");
+            this.imageList1.Images.SetKeyName(1, "light_blue.png");
+            this.imageList1.Images.SetKeyName(2, "purple.png");
+            this.imageList1.Images.SetKeyName(3, "orange.png");
+            this.imageList1.Images.SetKeyName(4, "red.png");
+            this.imageList1.Images.SetKeyName(5, "yellow.png");
+            this.imageList1.Images.SetKeyName(6, "green.png");
+            // 
+            // axWindowsMediaPlayer4
+            // 
+            this.axWindowsMediaPlayer4.Enabled = true;
+            this.axWindowsMediaPlayer4.Location = new System.Drawing.Point(0, 0);
+            this.axWindowsMediaPlayer4.Name = "axWindowsMediaPlayer4";
+            this.axWindowsMediaPlayer4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer4.OcxState")));
+            this.axWindowsMediaPlayer4.Size = new System.Drawing.Size(75, 23);
+            this.axWindowsMediaPlayer4.TabIndex = 225;
+            // 
+            // axWindowsMediaPlayer3
+            // 
+            this.axWindowsMediaPlayer3.Enabled = true;
+            this.axWindowsMediaPlayer3.Location = new System.Drawing.Point(143, 332);
+            this.axWindowsMediaPlayer3.Name = "axWindowsMediaPlayer3";
+            this.axWindowsMediaPlayer3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer3.OcxState")));
+            this.axWindowsMediaPlayer3.Size = new System.Drawing.Size(118, 46);
+            this.axWindowsMediaPlayer3.TabIndex = 224;
+            // 
             // axWindowsMediaPlayer2
             // 
             this.axWindowsMediaPlayer2.Enabled = true;
@@ -164,36 +195,6 @@
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
             this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(2000, 2000);
             this.axWindowsMediaPlayer1.TabIndex = 0;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "blue.png");
-            this.imageList1.Images.SetKeyName(1, "light_blue.png");
-            this.imageList1.Images.SetKeyName(2, "purple.png");
-            this.imageList1.Images.SetKeyName(3, "orange.png");
-            this.imageList1.Images.SetKeyName(4, "red.png");
-            this.imageList1.Images.SetKeyName(5, "yellow.png");
-            this.imageList1.Images.SetKeyName(6, "green.png");
-            // 
-            // axWindowsMediaPlayer3
-            // 
-            this.axWindowsMediaPlayer3.Enabled = true;
-            this.axWindowsMediaPlayer3.Location = new System.Drawing.Point(143, 332);
-            this.axWindowsMediaPlayer3.Name = "axWindowsMediaPlayer3";
-            this.axWindowsMediaPlayer3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer3.OcxState")));
-            this.axWindowsMediaPlayer3.Size = new System.Drawing.Size(118, 46);
-            this.axWindowsMediaPlayer3.TabIndex = 224;
-            // 
-            // axWindowsMediaPlayer4
-            // 
-            this.axWindowsMediaPlayer4.Enabled = true;
-            this.axWindowsMediaPlayer4.Location = new System.Drawing.Point(0, 0);
-            this.axWindowsMediaPlayer4.Name = "axWindowsMediaPlayer4";
-            this.axWindowsMediaPlayer4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer4.OcxState")));
-            this.axWindowsMediaPlayer4.Size = new System.Drawing.Size(75, 23);
-            this.axWindowsMediaPlayer4.TabIndex = 225;
             // 
             // Form1
             // 
@@ -216,10 +217,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -60,7 +60,6 @@ namespace final_project
             axWindowsMediaPlayer4.Visible = false;
             axWindowsMediaPlayer4.settings.autoStart = false;
             axWindowsMediaPlayer4.URL = "full_line.mp3";//播放音樂
-
             WindowState = FormWindowState.Maximized;//最大化窗體
             //設定音樂循環播放
             block_type = (uint)rander.Next(0, 7) + 1;
@@ -119,7 +118,7 @@ namespace final_project
             init_game();
         }
 
-        public void timer1_Tick(object sender, EventArgs e)
+        public async void timer1_Tick(object sender, EventArgs e)
         {
             if (y_direction(block_type, block_row, block_col))
             {
@@ -163,36 +162,54 @@ namespace final_project
                 full_line_check();
                 if (block_row == 20)
                 {
+
                     end = true;
                     timer1.Enabled = false;
-                    string filePath = "./score.json";
+                    timer2.Enabled = false;
+
+                    string filePath = "./scores.json";
                     string json;
-                    List<int> scores;
+                    List<int> scores = new List<int>();
                     if (File.Exists(filePath))
                     {
                         json = File.ReadAllText(filePath);
                         scores = JsonSerializer.Deserialize<List<int>>(json);
                         //讀取 JSON 檔案中的分數紀錄，並將它們反序列化為 List<int>
-                    }
-                    else
-                    {
-                        scores = new List<int>();
+                        label_info.Visible = true;
+                        label_info.BringToFront();
+                        label_info.Location = new Point(605, 300);
+                        label_info.Text = "遊戲結束，你的分數是" + score.ToString() + "分\r\n       按下ENTER再來一場";
+                        MessageBox.Show("遊戲結束，你的分數是" + score.ToString() + "分", "遊戲結束", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // 在遊戲結束時，將玩家的分數加入 scores 列表中
+                        int newScore = Convert.ToInt32(score);
+                        if (scores.Count < 10)
+                        {
+                            scores.Add(newScore);
+                        }
+                        else
+                        {
+                            for (int i = 9; i >= 0; i--)
+                            {
+                                if (newScore > scores[i])
+                                {
+                                    scores.Insert(i, newScore);
+                                    scores.RemoveAt(10);
+                                    break;
+                                }
+                            }
+                        }
+                        // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
+                        scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
+                        // 將 scores 列表序列化為 JSON 字串，並將其寫入 scores.json 檔案中
                         json = JsonSerializer.Serialize(scores);
                         File.WriteAllText("scores.json", json);
                     }
-                    
-
-                    // 在遊戲結束時，將玩家的分數加入 scores 列表中
-                    int newScore =Convert.ToInt32(score);
-                    scores.Add(newScore);
-
-                    // 根據分數排序 scores 列表，以便前十名分數最高的玩家排在前面
-                    scores = scores.OrderByDescending(s => s).Take(10).ToList();
-
-                    // 將 scores 列表序列化為 JSON 字串，並將其寫入 scores.json 檔案中
-                    json = JsonSerializer.Serialize(scores);
-                    File.WriteAllText("scores.json", json);
-                    MessageBox.Show("Game Over! 請按下Enter重新開始");
+                    else
+                    {
+                        scores.Add(Convert.ToInt32(score));
+                        json = JsonSerializer.Serialize(scores);
+                        File.WriteAllText("scores.json", json);
+                    }
                     return;
                 };
                 block_type = block_type_next;
@@ -272,20 +289,22 @@ namespace final_project
             {
                 if (!end)
                     axWindowsMediaPlayer3.Ctlcontrols.play();
+                else
+                {
+                    return;
+                }
                 if (block_row==20)
                 {
                     timer1_Tick(sender, e);
-
                 }
                 while (block_row != 20)
                     timer1_Tick(sender, e);
-                
-
             }
             if (e.KeyCode == Keys.Enter)//重新開始
             {
                 if (end)
                 {
+                    label_info.Visible = false;
                     init_game();
                     timer1.Enabled = true;
                     timer2.Enabled = true;
