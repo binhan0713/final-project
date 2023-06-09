@@ -35,7 +35,12 @@ namespace final_project
             {
                 button1.Font = font;
             }
+            void ChangecontrolFont_label1(Font font)
+            {
+                label1.Font = font;
+            }
             ChangecontrolFont_button1(ShowFont("Minecraft", 20));
+            ChangecontrolFont_label1(ShowFont("Minecraft", 50));
             button1.FlatStyle = FlatStyle.Flat;//設定button1的樣式為Flat
             button1.FlatAppearance.BorderSize = 2;//設定button1的邊框為2
             this.StartPosition = FormStartPosition.CenterScreen;
