@@ -273,78 +273,101 @@ namespace final_project
         }
         private async void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.P)//暫停
-            {
-                if (game_mode == 0) { game_mode = 1; timer1.Enabled = true; }
-                else { game_mode = 0; timer1.Enabled = false; }
-            }
-
-            if (e.KeyCode == Keys.Left)
-            {
-                if (x_direction(block_type, block_row, block_col, -1))
+            if(timer1.Enabled == true) {
+                if (e.KeyCode == Keys.P)//暫停
                 {
-                    block_col_pre = block_col; block_col--;
-                    block_changed = true;
+                    if (game_mode == 0) { game_mode = 1; timer1.Enabled = true; }
+                    else { game_mode = 0; timer1.Enabled = false; }
+                }
+
+                if (e.KeyCode == Keys.Left)
+                {
+                    if (x_direction(block_type, block_row, block_col, -1))
+                    {
+                        block_col_pre = block_col; block_col--;
+                        block_changed = true;
+                    }
+                }
+
+                if (e.KeyCode == Keys.Right)
+                {
+                    if (x_direction(block_type, block_row, block_col, 1))
+                    {
+                        block_col_pre = block_col; block_col++;
+                        block_changed = true;
+                    }
+                }
+
+                if (e.KeyCode == Keys.Up)
+                {
+                    block_type_pre = block_type;
+                    block_col_pre = block_col; block_row_pre = block_row;
+                    block_type = next_block_type(block_type, block_row, block_col);
+                    if (block_type != block_type_pre)
+                        block_changed = true;
+
+                }
+
+                if (e.KeyCode == Keys.S)//增加level
+                {
+                    game_mode = 2;
+                    timer_interval -= 50;
+
+                    if (timer_interval <= 0)
+                        timer_interval = 1;
+
+                    timer1.Interval = timer_interval;
+                    label_level.Text = "Level:" + (1010 - timer_interval) / 50;
+                }
+
+                if (e.KeyCode == Keys.A)//減少level
+                {
+                    game_mode = 2;
+                    timer_interval += 50;
+
+                    if (timer_interval >= 1010)
+                        timer_interval = 1010;
+
+                    timer1.Interval = timer_interval;
+                    label_level.Text = "Level:" + (1010 - timer_interval) / 50;
+                }
+
+                if (e.KeyCode == Keys.Space)//方塊直接落到底部
+                {
+                    if (!end)
+                        axWindowsMediaPlayer3.Ctlcontrols.play();
+                    else
+                    {
+                        return;
+                    }
+                    if (block_row == 20)
+                    {
+                        timer1_Tick(sender, e);
+                    }
+                    while (block_row != 20)
+                        timer1_Tick(sender, e);
+                }
+                
+
+                if (e.KeyCode == Keys.Down)
+                {
+                    timer1.Interval = 40;
+                }
+
+                
+                if (e.KeyCode == Keys.ShiftKey)
+                {
+                    store_block();
                 }
             }
-
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Escape)//離開遊戲
             {
-                if (x_direction(block_type, block_row, block_col, 1))
+                if (MessageBox.Show("真的不玩了嗎==？", "離開遊戲", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    block_col_pre = block_col; block_col++;
-                    block_changed = true;
+                    MessageBox.Show("哭了 掰掰~ ");
+                    Application.Exit();
                 }
-            }
 
-            if (e.KeyCode == Keys.Up)
-            {
-                block_type_pre = block_type;
-                block_col_pre = block_col; block_row_pre = block_row;
-                block_type = next_block_type(block_type, block_row, block_col);
-                if (block_type != block_type_pre)
-                    block_changed = true;
-
-            }
-
-            if (e.KeyCode == Keys.S)//增加level
-            {
-                game_mode = 2;
-                timer_interval -= 50;
-
-                if (timer_interval <= 0)
-                    timer_interval = 1;
-
-                timer1.Interval = timer_interval;
-                label_level.Text = "Level:" + (1010 - timer_interval) / 50;
-            }
-
-            if (e.KeyCode == Keys.A)//減少level
-            {
-                game_mode = 2;
-                timer_interval += 50;
-
-                if (timer_interval >= 1010)
-                    timer_interval = 1010;
-
-                timer1.Interval = timer_interval;
-                label_level.Text = "Level:" + (1010 - timer_interval) / 50;
-            }
-
-            if (e.KeyCode == Keys.Space)//方塊直接落到底部
-            {
-                if (!end)
-                    axWindowsMediaPlayer3.Ctlcontrols.play();
-                else
-                {
-                    return;
-                }
-                if (block_row==20)
-                {
-                    timer1_Tick(sender, e);
-                }
-                while (block_row != 20)
-                    timer1_Tick(sender, e);
             }
             if (e.KeyCode == Keys.Enter)//重新開始
             {
@@ -357,26 +380,7 @@ namespace final_project
                     timer2.Enabled = true;
                     end = false;
                 }
-                
-            }
 
-            if(e.KeyCode == Keys.Down)
-            {
-                timer1.Interval = 40;
-            }
-
-            if(e.KeyCode == Keys.Escape)//離開遊戲
-            {
-                if(MessageBox.Show("真的不玩了嗎==？","離開遊戲",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    MessageBox.Show("哭了 掰掰~ ");
-                    Application.Exit();
-                }
-                   
-            }
-            if(e.KeyCode == Keys.ShiftKey)
-            {
-                store_block();
             }
             if (block_changed)
             {
@@ -396,6 +400,7 @@ namespace final_project
         {
             x = 0;
             timer1.Stop();
+            timer2.Stop();
             timer3.Start();
             pictureBox1.Visible = true;
             for (uint i = 0; i < 24; i++)
@@ -1315,9 +1320,15 @@ namespace final_project
             if(x>5)
             {
                 timer1.Start();
+                timer2.Start();
                 timer3.Stop();
                 pictureBox1.Visible = false;
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 
