@@ -97,8 +97,7 @@ namespace final_project
                     
                     grids[i, j].Width = 30;
                     grids[i, j].Height = 30;
-                    grids[i, j].BorderStyle = BorderStyle.FixedSingle;
-                    grids[i, j].BackColor = Color.Black;
+
                     grids[i, j].Left = 630 + 30 * j;
                     grids[i, j].Top = 650 - i * 30;
                     grids[i, j].Visible = true;
