@@ -17,7 +17,7 @@ namespace final_project
     public partial class Form1 : Form
 
     {
-
+        int x = 0;
         Color grayColor = Color.FromArgb(205, 0, 0, 0);
         bool end = false;//紀錄遊戲是否結束
         bool israndon = true;
@@ -48,6 +48,8 @@ namespace final_project
         {
 
             InitializeComponent();
+            timer1.Stop();
+            timer3.Start();
             Font ShowFont(string name, float size)
             {
                 Font font = null;
@@ -86,6 +88,7 @@ namespace final_project
             block_type = (uint)rander.Next(0, 7) + 1;
             block_type_pre = block_type;
             block_type_next = block_type;
+                
             // generate 20x10 labels for "main" area, dynamically.
             for (int i = 0; i < 20; i++)
                 for (int j = 0; j < 10; j++)
@@ -139,8 +142,10 @@ namespace final_project
             init_game();
             textBox1.Visible = false;
             textBox1.BackColor = Color.Black;
+            pictureBox1.BringToFront();
+
         }
-        
+
         public async void timer1_Tick(object sender, EventArgs e)
         {
             if (y_direction(block_type, block_row, block_col))
@@ -350,7 +355,6 @@ namespace final_project
                     textBox1.Visible = false;
                     textBox1.Clear();
                     init_game();
-                    timer1.Enabled = true;
                     timer2.Enabled = true;
                     end = false;
                 }
@@ -391,6 +395,10 @@ namespace final_project
         
         void init_game()
         {
+            x = 0;
+            timer1.Stop();
+            timer3.Start();
+            pictureBox1.Visible = true;
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
@@ -418,6 +426,8 @@ namespace final_project
                     temp[i, j].BackColor = Color.White;
                     temp[i, j].Image = null;
                 }
+
+
         }
         void store_block()
         {
@@ -1299,7 +1309,17 @@ namespace final_project
                 }
             }
         }
-
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            pictureBox1.Image = imageList2.Images[x];
+            x++;
+            if(x>5)
+            {
+                timer1.Start();
+                timer3.Stop();
+                pictureBox1.Visible = false;
+            }
+        }
     }
 
 }
