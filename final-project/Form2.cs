@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolBar;
+
+namespace final_project
+{
+    public partial class Form2 : Form
+    {
+        public Form2()
+        {
+            InitializeComponent();
+            // 设置背景图像
+            this.BackgroundImage = Image.FromFile("./start.png");
+
+            // 设置背景图像布局模式（可选）
+            this.BackgroundImageLayout = ImageLayout.Stretch;
+            Font ShowFont(string name, float size)
+            {
+                Font font = null;
+                System.Drawing.Text.PrivateFontCollection privateFonts = new System.Drawing.Text.PrivateFontCollection();
+                privateFonts.AddFontFile("./Minecraft.ttf");
+                font = new Font(privateFonts.Families[0], size);
+                return font;
+            }
+            void ChangecontrolFont_button1(Font font)
+            {
+                button1.Font = font;
+            }
+            ChangecontrolFont_button1(ShowFont("Minecraft", 20));
+            button1.FlatStyle = FlatStyle.Flat;//設定button1的樣式為Flat
+            button1.FlatAppearance.BorderSize = 2;//設定button1的邊框為2
+            this.StartPosition = FormStartPosition.CenterScreen;
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
+        }
+    }
+}
