@@ -241,7 +241,7 @@ namespace final_project
                         scores = scores.OrderByDescending(s => s).Take(scores.Count).ToList();
                         if (scores.Count != 10)
                         {
-                            textBox1.AppendText("you become the" + rank[scores.Count() - 1] + "!!!!!!\r\n");
+                            textBox1.AppendText("you become the" + rank[scores.LastIndexOf(newScore)] + "!!!!!!\r\n");
                         }
 
 
