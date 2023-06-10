@@ -16,7 +16,9 @@ namespace final_project
         {
             InitializeComponent();
             this.BackgroundImage = Image.FromFile("./tips3.jpg");
-
+            button1.FlatStyle = FlatStyle.Flat;//設定button1的樣式為Flat
+            button1.FlatAppearance.BorderSize = 2;//設定button1的邊框為2
+            this.StartPosition = FormStartPosition.CenterScreen;
             // 设置背景图像布局模式（可选）
             this.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Image = imageList1.Images[0];
