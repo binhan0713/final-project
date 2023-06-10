@@ -89,7 +89,7 @@ namespace final_project
 
         private void button3_MouseHover(object sender, EventArgs e)
         {
-            button3.Size = new Size(button1.Width + 10, button1.Height + 10);
+            button3.Size = new Size(button3.Width + 10, button3.Height + 10);
 
         }
 
@@ -104,7 +104,7 @@ namespace final_project
 
         private void button2_MouseHover(object sender, EventArgs e)
         {
-            button2.Size = new Size(button1.Width + 10, button1.Height + 10);
+            button2.Size = new Size(button2.Width + 10, button2.Height + 10);
 
         }
 
