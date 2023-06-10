@@ -43,6 +43,10 @@ namespace final_project
             ChangecontrolFont_label1(ShowFont("Minecraft", 50));
             button1.FlatStyle = FlatStyle.Flat;//設定button1的樣式為Flat
             button1.FlatAppearance.BorderSize = 2;//設定button1的邊框為2
+            button2.FlatStyle = FlatStyle.Flat;//設定button1的樣式為Flat
+            button2.FlatAppearance.BorderSize = 2;//設定button1的邊框為2
+            button3.FlatStyle = FlatStyle.Flat;//設定button1的樣式為Flat
+            button3.FlatAppearance.BorderSize = 2;//設定button1的邊框為2
             this.StartPosition = FormStartPosition.CenterScreen;
             
         }
@@ -52,6 +56,19 @@ namespace final_project
             this.Hide();
             Form1 form1 = new Form1();
             form1.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form3 form3 = new Form3();
+            form3.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+
         }
     }
 }
