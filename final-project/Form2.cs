@@ -70,5 +70,51 @@ namespace final_project
             Application.Exit();
 
         }
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            button1.Size=new Size(button1.Width + 10, button1.Height + 10);
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            if(button1.Width>112)
+            {
+                button1.Width -= 10;
+                button1.Height -= 10;
+            }
+ 
+
+        }
+
+        private void button3_MouseHover(object sender, EventArgs e)
+        {
+            button3.Size = new Size(button1.Width + 10, button1.Height + 10);
+
+        }
+
+        private void button3_MouseLeave(object sender, EventArgs e)
+        {
+            if (button3.Width > 112)
+            {
+                button3.Width -= 10;
+                button3.Height -= 10;
+            }
+        }
+
+        private void button2_MouseHover(object sender, EventArgs e)
+        {
+            button2.Size = new Size(button1.Width + 10, button1.Height + 10);
+
+        }
+
+        private void button2_MouseLeave(object sender, EventArgs e)
+        {
+            if (button2.Width > 216)
+            {
+                button2.Width -= 10;
+                button2.Height -= 10;
+            }
+        }
     }
 }
