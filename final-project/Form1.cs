@@ -406,11 +406,15 @@ namespace final_project
         
         void init_game()
         {
+            axWindowsMediaPlayer2.Ctlcontrols.stop();
+            axWindowsMediaPlayer5.Ctlcontrols.play();
+            pictureBox1.Image = imageList2.Images[0];
+            timer3.Interval = 1;
+            pictureBox1.Visible = true;
             x = 0;
             timer1.Stop();
             timer2.Stop();
             timer3.Start();
-            pictureBox1.Visible = true;
             for (uint i = 0; i < 24; i++)
                 for (uint j = 0; j < 10; j++)
                     signs[i, j] = false;
@@ -1323,8 +1327,10 @@ namespace final_project
         }
         private void timer3_Tick(object sender, EventArgs e)
         {
+            timer3.Interval = 900;
             pictureBox1.BringToFront();
-            if(x<4)
+            pictureBox1.Visible = true;
+            if (x<4)
             pictureBox1.Image = imageList2.Images[x];
             x++;
             if(x==5)
