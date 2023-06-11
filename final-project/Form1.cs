@@ -43,11 +43,14 @@ namespace final_project
         int timer_interval = 1010;
         int game_mode = 1;
         Random rander = new Random();
-       
+        PictureBox pictureBox1 = new PictureBox();
+
         public Form1()
         {
 
             InitializeComponent();
+
+
             timer1.Stop();
             timer3.Start();
             Font ShowFont(string name, float size)
@@ -104,7 +107,6 @@ namespace final_project
                     grids[i, j].Top = 650 - i * 30;
                     grids[i, j].Visible = true;
                     this.Controls.Add(grids[i, j]);
-                    grids[i, j].BringToFront();
 
                 }
             // generate 4x3 labels for "next" area, dynamically.
@@ -123,7 +125,10 @@ namespace final_project
                     this.Controls.Add(next[i, j]);
                     next[i, j].BringToFront();
                 }
-
+            pictureBox1.Location = new Point(720, 200);
+            pictureBox1.Size = new Size(120, 120);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            Controls.Add(pictureBox1);
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 3; j++)
                 {
@@ -143,7 +148,8 @@ namespace final_project
             init_game();
             textBox1.Visible = false;
             textBox1.BackColor = Color.Black;
-            pictureBox1.BringToFront();
+
+            
 
         }
 
@@ -1317,9 +1323,10 @@ namespace final_project
         }
         private void timer3_Tick(object sender, EventArgs e)
         {
+            pictureBox1.BringToFront();
             pictureBox1.Image = imageList2.Images[x];
             x++;
-            if(x>5)
+            if(x==4)
             {
                 timer1.Start();
                 timer2.Start();
