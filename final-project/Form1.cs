@@ -53,6 +53,9 @@ namespace final_project
 
             timer1.Stop();
             timer3.Start();
+            axWindowsMediaPlayer5.Visible = false;
+            axWindowsMediaPlayer5.URL = "Ding.mp4";
+            axWindowsMediaPlayer5.Ctlcontrols.play();
             Font ShowFont(string name, float size)
             {
                 Font font = null;
@@ -77,9 +80,6 @@ namespace final_project
             axWindowsMediaPlayer1.uiMode = "none";//隱藏播放器的控制項
             axWindowsMediaPlayer1.URL = "space.mp4";//播放音樂
             axWindowsMediaPlayer1.settings.setMode("loop", true);
-            axWindowsMediaPlayer2.Visible = false;
-            axWindowsMediaPlayer2.URL = "QQ.mp3";
-            axWindowsMediaPlayer2.settings.setMode("loop", true);
             axWindowsMediaPlayer3.Visible = false;
             axWindowsMediaPlayer3.settings.autoStart = false;
             axWindowsMediaPlayer3.URL = "drum.mp3";//播放音樂
@@ -1333,6 +1333,9 @@ namespace final_project
                 timer2.Start();
                 timer3.Stop();
                 pictureBox1.Visible = false;
+                axWindowsMediaPlayer2.Visible = false;
+                axWindowsMediaPlayer2.URL = "QQ.mp3";
+                axWindowsMediaPlayer2.settings.setMode("loop", true);
             }
         }
 
