@@ -1324,9 +1324,10 @@ namespace final_project
         private void timer3_Tick(object sender, EventArgs e)
         {
             pictureBox1.BringToFront();
+            if(x<4)
             pictureBox1.Image = imageList2.Images[x];
             x++;
-            if(x==4)
+            if(x==5)
             {
                 timer1.Start();
                 timer2.Start();
